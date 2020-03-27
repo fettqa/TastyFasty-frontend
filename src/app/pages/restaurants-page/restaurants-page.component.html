@@ -1,0 +1,21 @@
+<div class="restaurant-card" *ngFor="let restaurant of restaurants">
+  <mat-card class="restaurant-card">
+    <mat-card-title> {{restaurant.restaurantName}}</mat-card-title>
+    <mat-card-subtitle> {{restaurant.tags}} </mat-card-subtitle>
+    <img mat-card-image> IMG<img>
+    <mat-card-content>
+      <div>{{restaurant.address.city + " " + restaurant.address.street + " " + restaurant.address.building }}</div>
+      <div>OPEN: {{restaurant.openTime}}</div>
+      <div>CLOSE: {{restaurant.closeTime}}</div>
+      <div>Rating: {{restaurant.rating}}</div><!--возможно получится переделать под звездочки-->
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button routerLink="breakfasts" class="to-breakfasts">Show breakfasts</a>
+    </mat-card-actions>
+    <mat-card-footer></mat-card-footer>
+  </mat-card>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>
