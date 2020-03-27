@@ -1,18 +1,11 @@
 <mat-toolbar color="primary">
   <h1 routerLink="/" class="header-button">Tasty Fasty</h1>
-  <a mat-button routerLink="basket" class="to-my-basket">My Basket</a>
+  <a class="toolbar-button" mat-raised-button (click)="handleSignIn()">Sign in</a>
+  <a class="toolbar-button" mat-raised-button routerLink="registration">Registration</a>
+  <a class="toolbar-button" mat-raised-button routerLink="basket" >My Basket</a>
 </mat-toolbar>
 
 <div>
   <router-outlet></router-outlet>
 </div>
 
-<mat-card class="restaurant-card">
-  <mat-card-title> Restaurant</mat-card-title>
-  <mat-card-subtitle> tags</mat-card-subtitle>
-  <img mat-card-image> IMG<img>
-  <mat-card-actions>
-    <button color="accent" mat-button>add to basket</button>
-  </mat-card-actions>
-  <mat-card-footer></mat-card-footer>
-</mat-card>

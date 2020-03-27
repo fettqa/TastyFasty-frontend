@@ -13,13 +13,23 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import { RestaurantsPageComponent } from './pages/restaurants-page/restaurants-page.component';
 import { BreakfastPageComponent } from './pages/breakfast-page/breakfast-page.component';
+import { SignInCreateDialogComponent } from './components/sign-in-create-dialog/sign-in-create-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RegistrationPageComponent } from './pages/registration/registration-page.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
     AppComponent,
     BasketPageComponent,
     RestaurantsPageComponent,
-    BreakfastPageComponent
+    BreakfastPageComponent,
+    SignInCreateDialogComponent,
+    RegistrationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +40,14 @@ import { BreakfastPageComponent } from './pages/breakfast-page/breakfast-page.co
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    MatRadioModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,13 @@
-.header-button{
+.header-button {
   cursor: pointer;
 }
 
-.to-my-basket{
-  margin-left: 85%;
+.toolbar-button {
+  display: flex;
+  margin-left: 50px;
 }
 
-.restaurant-card{
+.restaurant-card {
   position: absolute;
   margin-left: 45%;
 }
