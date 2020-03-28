@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegistrationPageComponent } from './pages/registration/registration-page.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     RestaurantsPageComponent,
     BreakfastPageComponent,
     SignInCreateDialogComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,

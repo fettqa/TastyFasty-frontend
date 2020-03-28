@@ -1,7 +1,7 @@
 import {Address} from '../restaurants-page/address-model';
 
 export interface User {
-  user_id: number;
+  user_id?: number;
   firstName: string;
   lastName: string;
   middleName?: string;
