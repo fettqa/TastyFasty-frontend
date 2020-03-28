@@ -22,6 +22,7 @@ import { RegistrationPageComponent } from './pages/registration/registration-pag
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
     FormsModule,
     MatRadioModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

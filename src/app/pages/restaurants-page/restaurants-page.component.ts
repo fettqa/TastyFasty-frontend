@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ListValue} from './api-model';
 import {Restaurant} from './restaurant-model';
+import {RestaurantService} from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurants-page',
@@ -12,12 +13,12 @@ export class RestaurantsPageComponent implements OnInit {
 
   restaurants?: Restaurant[];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private restaurantService: RestaurantService) {
   }
 
   ngOnInit(): void {
-    this.httpClient.get<ListValue<Restaurant>>('localhost8080').subscribe(result => {
-      this.restaurants = result.items;
+    this.restaurantService.getRestaurants().subscribe(restaurantList => {
+      this.restaurants = restaurantList.items;
     });
   }
 

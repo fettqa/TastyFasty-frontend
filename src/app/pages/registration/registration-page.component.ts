@@ -3,6 +3,7 @@ import {Address} from '../restaurants-page/address-model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from './user-model';
 import {HttpClient} from '@angular/common/http';
+import {UserService} from '../../services/user.service';
 
 
 interface CreateFirstForm {
@@ -40,7 +41,7 @@ export class RegistrationPageComponent implements OnInit {
   isLinear = true;
 
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -83,7 +84,7 @@ export class RegistrationPageComponent implements OnInit {
     };
     console.log(userToPost);
     console.log(this.username, this.password);
-    this.httpClient.post<User>('localhost8080', userToPost).subscribe(
+    this.userService.createUser(userToPost).subscribe(
       user => {
         console.log(user);
       }
