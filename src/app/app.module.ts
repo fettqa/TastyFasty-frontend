@@ -23,6 +23,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import {MatIconModule} from '@angular/material/icon';
+import {LOGGING_INTERCEPTOR} from './interceptors/logging.interceptor';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    LOGGING_INTERCEPTOR
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

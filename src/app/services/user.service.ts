@@ -12,6 +12,6 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>('localhost8080', user); /*нужно будет указать правильный путь*/
+    return this.http.post<User>('/users', user); /*нужно будет указать правильный путь*/
   }
 }

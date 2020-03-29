@@ -13,6 +13,6 @@ export class RestaurantService {
   }
 
   getRestaurants(): Observable<ListValue<Restaurant>> {
-    return this.http.get<ListValue<Restaurant>>('localhost8080'); /*нужно будет указать правильный путь*/
+    return this.http.get<ListValue<Restaurant>>('/restaurants'); /*нужно будет указать правильный путь*/
   }
 }
