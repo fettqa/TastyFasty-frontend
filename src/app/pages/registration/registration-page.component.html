@@ -14,7 +14,7 @@
       </mat-form-field>
 
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button  [disabled]="!form.valid" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
@@ -41,7 +41,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button [disabled]="!form1.valid" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
@@ -74,7 +74,7 @@
 
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button [disabled]="!form2.valid" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>

@@ -1,18 +1,18 @@
-<form>
+<form #form="ngForm">
   <div mat-dialog-content class="my-form-sign-in">
     <mat-form-field>
       <mat-label>Login</mat-label>
-      <input matInput [(ngModel)]="Login">
+      <input matInput name="Login" ngModel required>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput [(ngModel)]="Password">
+      <input matInput name="Password" ngModel required>
     </mat-form-field>
 
 
   </div>
   <mat-dialog-actions>
-    <button mat-button color="primary">Sign in</button>
+    <button [disabled]="!form.valid" mat-button color="primary">Sign in</button>
   </mat-dialog-actions>
 </form>

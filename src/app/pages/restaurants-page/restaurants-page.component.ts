@@ -17,13 +17,17 @@ export class RestaurantsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.restaurantService.getRestaurants().subscribe(restaurantList => {
-       this.restaurants = restaurantList.items;
-     });
-  /*  this.httpClient.get<ListValue<Restaurant>>('http://localhost:8080/restaurants')
-      .subscribe(result => {
-        this.restaurants = result.items;
+    /*  this.restaurantService.getRestaurants().subscribe(restaurantList => {
+        this.restaurants = restaurantList.items;
       });*/
+    this.httpClient.get<Restaurant[]>('http://localhost:8080/restaurants')
+      .subscribe(result => {
+        this.restaurants = result;
+        console.log(this.restaurants);
+        /*console.log(result.items);
+        this.restaurants = result.items;
+      */
+      });
 
   }
 

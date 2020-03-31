@@ -14,7 +14,6 @@ export class LoggingInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('infoinfo');
     return next.handle(request);
   }
 }
