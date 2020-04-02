@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Restaurant} from '../pages/restaurants-page/restaurant-model';
-import {ListValue} from '../pages/restaurants-page/api-model';
+import {Restaurant} from '../models/restaurant-model';
+import {ListValue} from '../models/api-model';
 
 @Injectable({
   providedIn: 'root'

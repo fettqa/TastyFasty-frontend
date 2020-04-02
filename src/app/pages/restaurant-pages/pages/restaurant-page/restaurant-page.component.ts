@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Restaurant} from '../../../../features/restaurant/models/restaurant-model';
+import {RestaurantService} from '../../../../features/restaurant/services/restaurant.service';
 import {HttpClient} from '@angular/common/http';
-import {ListValue} from './api-model';
-import {Restaurant} from './restaurant-model';
-import {RestaurantService} from '../../services/restaurant.service';
 
 @Component({
-  selector: 'app-restaurants-page',
-  templateUrl: './restaurants-page.component.html',
-  styleUrls: ['./restaurants-page.component.scss']
+  selector: 'app-restaurant-page',
+  templateUrl: './restaurant-page.component.html',
+  styleUrls: ['./restaurant-page.component.scss']
 })
-export class RestaurantsPageComponent implements OnInit {
+export class RestaurantPageComponent implements OnInit {
 
   restaurants?: Restaurant[];
 
@@ -24,12 +23,8 @@ export class RestaurantsPageComponent implements OnInit {
       .subscribe(result => {
         this.restaurants = result;
         console.log(this.restaurants);
-        /*console.log(result.items);
-        this.restaurants = result.items;
-      */
       });
 
   }
-
 
 }

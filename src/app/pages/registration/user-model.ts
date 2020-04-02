@@ -1,4 +1,4 @@
-import {Address} from '../restaurants-page/address-model';
+import {Address} from '../../features/restaurant/models/address-model';
 
 export interface User {
   user_id?: number;

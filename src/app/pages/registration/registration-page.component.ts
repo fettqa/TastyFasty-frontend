@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Address} from '../restaurants-page/address-model';
+import {Address} from '../../features/restaurant/models/address-model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from './user-model';
 import {HttpClient} from '@angular/common/http';
