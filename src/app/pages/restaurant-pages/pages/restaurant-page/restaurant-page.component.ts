@@ -23,6 +23,10 @@ export class RestaurantPageComponent implements OnInit {
       .subscribe(result => {
         this.restaurants = result;
         console.log(this.restaurants);
+        console.log(this.restaurants[0].restaurantInfo.close_time);
+        console.log(result[0].restaurantInfo.close_time);
+        console.log(result[0].restaurantInfo);
+
       });
 
   }

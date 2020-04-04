@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {RestaurantPageComponent} from './pages/restaurant-page/restaurant-page.component';
-import {BreakfastPageComponent} from '../breakfast-page/breakfast-page.component';
+import {BreakfastPageComponent} from './pages/breakfast-page/breakfast-page.component';
 
 
 const routes: Routes = [
