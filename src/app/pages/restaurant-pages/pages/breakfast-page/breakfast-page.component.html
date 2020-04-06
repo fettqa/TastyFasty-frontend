@@ -1,1 +1,3 @@
-<p>breakfast-page works!</p>
+<div class="breakfast-card" *ngFor="let breakfast of breakfasts">
+  <app-breakfast-card [breakfast]="breakfast"></app-breakfast-card>
+</div>

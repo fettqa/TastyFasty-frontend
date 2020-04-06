@@ -3,11 +3,22 @@
 }
 
 .toolbar-button {
-  display: flex;
-  margin-left: 50px;
+  margin: auto 20px auto auto;
+  padding: 10px;
 }
 
-.restaurant-card {
-  position: absolute;
-  margin-left: 45%;
+.nav-buttons {
+  margin: auto;
+}
+
+.nav-buttons a {
+  display: inline;
+}
+
+.account-group-buttons {
+  margin: auto 10px auto auto;
+}
+
+.account-group-buttons a {
+  display: inline;
 }
