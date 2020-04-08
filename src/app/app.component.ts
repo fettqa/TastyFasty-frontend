@@ -14,9 +14,7 @@ export class AppComponent {
   title: string = 'TastyFasty';
   isLoggedIn: boolean = true;
 
-  login$ = this.currentUser.user$.pipe(
-    map(user => user.login)
-  );
+  user$ = this.currentUser.user$.pipe();
 
   constructor(private dialogService: MatDialog, private currentUser: CurrentUserService) {
   }

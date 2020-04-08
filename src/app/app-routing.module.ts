@@ -21,6 +21,11 @@ const routes: Routes = [
   {
     path: 'registration',
     component: RegistrationPageComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth-pages/auth-pages.module').then(m => m.AuthPagesModule)
+
   }
 ];
 

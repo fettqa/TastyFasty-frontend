@@ -1,10 +1,17 @@
 export enum Role {
-  ADMIN,
-  USER,
+  ADMIN = 'ROLE_ADMIN', USER = 'ROLE_USER'
 }
 
-export interface CurrentUser {
-  id: string;
-  login: string;
-  role: Role;
+export interface AnonymousUser {
+  authenticated: false;
 }
+
+export interface LoggedUser {
+  authenticated: true;
+  info: {
+    username: string;
+    roles: Role[];
+  };
+}
+
+export type CurrentUser = AnonymousUser | LoggedUser;
