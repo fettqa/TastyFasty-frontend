@@ -7,9 +7,11 @@
     <mat-icon>shopping_cart</mat-icon>
   </a>
   <a class="toolbar-button" mat-raised-button routerLink="my-account">My Profile</a>
+  <app-user-menu></app-user-menu>
+
 </mat-toolbar>
 
-<div><span>{{login$ | async}}</span></div>
+
 <div>
   <router-outlet></router-outlet>
 </div>

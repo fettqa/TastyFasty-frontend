@@ -2,16 +2,25 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LOGGING_INTERCEPTOR} from './interceptors/logging.interceptor';
 import {LOAD_CURRENT_USER_INITIALIZER} from './services/current-user.service';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import {MatButtonModule} from '@angular/material/button';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [UserMenuComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    RouterModule
   ],
   providers: [
     LOGGING_INTERCEPTOR,
+    LOAD_CURRENT_USER_INITIALIZER,
   ],
+  exports: [
+    UserMenuComponent
+  ]
 })
 export class CoreModule {
 }

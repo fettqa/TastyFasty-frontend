@@ -1,26 +1,71 @@
 import {Injectable} from '@angular/core';
-import {interval, Observable} from 'rxjs';
-import {CurrentUser, Role} from '../models/current-user.model';
-import {first, mapTo} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {CurrentUser} from '../models/current-user.model';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {LoginData} from '../models/auth.model';
+import {catchError} from 'rxjs/operators';
+import {CurrentUserService} from './current-user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() {
+  cu: Observable<CurrentUser>;
+
+  constructor(private http: HttpClient) {
   }
 
   loadProfile(): Observable<CurrentUser> {
-    return interval(500).pipe(
-      first(),
-      mapTo(
-        {
-          id: '1',
-          login: 'sdfghjkl',
-          role: Role.ADMIN
-        }
-      )
-    );
+    if (this.cu === undefined) {
+      return this.http.get<CurrentUser>('http://localhost:8080/restaurants');
+
+    } else {
+      return this.cu;
+    }    /*
+        return this.http.get<CurrentUser>('http://localhost:8080/restaurants');
+    */
+  }
+
+
+  login(data: LoginData): Observable<void> {
+    const params = new HttpParams({
+      fromObject: {
+        username: data.username,
+        password: data.password
+      }
+    });
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    this.cu = this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
+      headers: headers
+    });
+
+    return this.http.post<void>('http://localhost:8080/auth/login', params.toString(), {
+      headers: headers
+    });
+  }
+
+  logout(): Observable<void> {
+    this.cu = this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
+
+    return this.http.post<void>('http://localhost:8080/auth/logout', null);
+/*        const params = new HttpParams({
+          fromObject: {
+            username: '0',
+            password: '0'
+          }
+        });
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        });
+
+        return this.http.post<void>('http://localhost:8080/auth/login', params.toString(), {
+          headers: headers
+        });*/
   }
 }
