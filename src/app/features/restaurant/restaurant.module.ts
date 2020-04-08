@@ -5,8 +5,6 @@ import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {BreakfastCardComponent} from './components/breakfast-card/breakfast-card.component';
 import {MatButtonModule} from "@angular/material/button";
-import {RestaurantService} from "./services/restaurant.service";
-import {BreakfastService} from "./services/breakfast.service";
 
 
 @NgModule({

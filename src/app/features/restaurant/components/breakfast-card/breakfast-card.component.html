@@ -1,7 +1,7 @@
 <mat-card class="breakfast-card">
   <mat-card-title> {{breakfast.name}}</mat-card-title>
   <mat-card-subtitle> {{breakfast.tag}} </mat-card-subtitle>
-  <img mat-card-image src="{{breakfast.img}}" alt="{{breakfast.img}}">
+  <img mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
   <mat-card-content>
     <div>Price: {{breakfast.price}}</div>
   </mat-card-content>
