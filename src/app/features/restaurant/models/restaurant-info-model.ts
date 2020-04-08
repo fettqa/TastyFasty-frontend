@@ -7,4 +7,5 @@ export interface RestaurantInfo {
   open_time: number;
   close_time: number;
   address: Address;
+  img: number[];
 }

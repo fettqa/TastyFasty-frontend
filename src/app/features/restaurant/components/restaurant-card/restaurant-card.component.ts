@@ -15,5 +15,4 @@ export class RestaurantCardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

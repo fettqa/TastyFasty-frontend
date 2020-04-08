@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {SignInCreateDialogComponent} from './components/sign-in-create-dialog/sign-in-create-dialog.component';
+import {SignInDialogComponent} from './components/sign-in-dialog/sign-in-dialog.component';
 import {RegistrationPageComponent} from './pages/registration/registration-page.component';
 import {CurrentUserService} from './core/services/current-user.service';
 import {map} from 'rxjs/operators';
-import {useAnimation} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,8 @@ import {useAnimation} from '@angular/animations';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend';
+  title: string = 'TastyFasty';
+  isLoggedIn: boolean = true;
 
   user$ = this.currentUser.user$.pipe();
 
@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   handleSignIn() {
-    const dialog = this.dialogService.open(SignInCreateDialogComponent);
+    const dialog = this.dialogService.open(SignInDialogComponent);
   }
 
   handleRegistration() {
