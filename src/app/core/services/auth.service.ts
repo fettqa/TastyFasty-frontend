@@ -18,13 +18,11 @@ export class AuthService {
 
   loadProfile(): Observable<CurrentUser> {
     if (this.cu === undefined) {
-      return this.http.get<CurrentUser>('http://localhost:8080/restaurants');
+      return this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
 
     } else {
       return this.cu;
-    }    /*
-        return this.http.get<CurrentUser>('http://localhost:8080/restaurants');
-    */
+    }
   }
 
 
@@ -53,19 +51,5 @@ export class AuthService {
     this.cu = this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
 
     return this.http.post<void>('http://localhost:8080/auth/logout', null);
-/*        const params = new HttpParams({
-          fromObject: {
-            username: '0',
-            password: '0'
-          }
-        });
-
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        });
-
-        return this.http.post<void>('http://localhost:8080/auth/login', params.toString(), {
-          headers: headers
-        });*/
   }
 }

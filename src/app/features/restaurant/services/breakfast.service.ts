@@ -20,6 +20,6 @@ export class BreakfastService {
   }
 
   getBreakfasts(): Observable<Breakfast[]> {
-    return this.http.get<Breakfast[]>(`http://localhost:8080/restaurants/${this.restId}/breakfasts`);
+    return this.http.get<Breakfast[]>(`/api/restaurants/${this.restId}/breakfasts`);
   }
 }
