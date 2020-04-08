@@ -1,11 +1,11 @@
 <form #form="ngForm"
       (ngSubmit)="handleLoginSubmit(form.value)">
 
-  <div *ngIf="form.errors?.server == true" class="error">
+  <div mat-dialog-content *ngIf="form.errors?.server == true" class="error">
     Incorrect login or password
   </div>
 
-  <div mat-dialog-content class="my-form-sign-in">
+  <div class="login-fields" mat-dialog-content>
     <mat-form-field>
       <mat-label>Username</mat-label>
       <input matInput name="username" ngModel required>
@@ -16,9 +16,11 @@
       <input matInput type="password" name="password" ngModel required>
     </mat-form-field>
 
-
   </div>
+  <mat-dialog-actions>
   <button [disabled]="!form.valid" mat-button color="primary">
     Sign in
   </button>
+  </mat-dialog-actions>
+
 </form>

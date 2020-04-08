@@ -7,9 +7,11 @@
     </a>
   </div>
   <div class="account-group-buttons">
-    <a class="toolbar-button" mat-raised-button (click)="handleSignIn()" *ngIf="isLoggedIn">Sign in</a>
-    <a class="toolbar-button" mat-raised-button routerLink="registration" color="accent" *ngIf="isLoggedIn">Registration</a>
-    <a class="toolbar-button" mat-raised-button routerLink="my-account" *ngIf="isLoggedIn">My Profile</a>
+    <app-user-menu ></app-user-menu>
+    <!--
+    <a class="toolbar-button" mat-raised-button routerLink="registration" color="accent"
+       *ngIf="isLoggedIn">Registration</a>
+    <a class="toolbar-button" mat-raised-button routerLink="my-account" *ngIf="isLoggedIn">My Profile</a>-->
   </div>
 </mat-toolbar>
 

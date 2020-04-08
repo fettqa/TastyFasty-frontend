@@ -5,15 +5,17 @@ import {LOAD_CURRENT_USER_INITIALIZER} from './services/current-user.service';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [UserMenuComponent],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        MatButtonModule,
+        RouterModule,
+        MatIconModule
+    ],
   providers: [
     LOGGING_INTERCEPTOR,
     LOAD_CURRENT_USER_INITIALIZER,
