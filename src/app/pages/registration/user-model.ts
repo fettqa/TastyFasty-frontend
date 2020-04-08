@@ -9,5 +9,6 @@ export interface User {
   password: string;
   address: Address;
   phoneNumber: number;
+  img: number[];
 }
 

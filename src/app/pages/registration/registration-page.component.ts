@@ -80,7 +80,8 @@ export class RegistrationPageComponent implements OnInit {
       address: this.address,
       phoneNumber: this.phoneNumber,
       username: this.username,
-      password: this.password
+      password: this.password,
+      img: [123, 98, 41, 21, 201]
     };
     console.log(userToPost);
     console.log(this.username, this.password);
