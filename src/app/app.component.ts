@@ -1,9 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {SignInDialogComponent} from './components/sign-in-dialog/sign-in-dialog.component';
-import {RegistrationPageComponent} from './pages/registration/registration-page.component';
 import {CurrentUserService} from './core/services/current-user.service';
-import {map} from 'rxjs/operators';
+import {Role} from './core/models/current-user.model';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +10,17 @@ import {map} from 'rxjs/operators';
 })
 export class AppComponent {
   title: string = 'TastyFasty';
-  isLoggedIn: boolean = true;
-
-  user$ = this.currentUser.user$.pipe();
+  Role = Role;
+  check: boolean;
 
   constructor(private dialogService: MatDialog, private currentUser: CurrentUserService) {
-  }
-
-  handleSignIn() {
-    const dialog = this.dialogService.open(SignInDialogComponent);
-  }
-
-  handleRegistration() {
-    const dialog = this.dialogService.open(RegistrationPageComponent);
+    this.check = true;
+    const rolesArr = [Role.DELIVERY];
+    this.currentUser.hasRole(...rolesArr)
+      .subscribe(has => {
+        if (has) {
+          this.check = false;
+        }
+      });
   }
 }

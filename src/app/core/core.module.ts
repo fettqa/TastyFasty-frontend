@@ -6,6 +6,10 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import {MatIconModule} from '@angular/material/icon';
         CommonModule,
         MatButtonModule,
         RouterModule,
-        MatIconModule
+        MatIconModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        LayoutModule
     ],
   providers: [
     LOGGING_INTERCEPTOR,

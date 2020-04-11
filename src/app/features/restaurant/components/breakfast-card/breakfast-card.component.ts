@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Breakfast} from "../../models/breakfast-model";
+import {Breakfast} from '../../models/breakfast-model';
 
 @Component({
   selector: 'app-breakfast-card',

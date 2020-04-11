@@ -4,6 +4,7 @@ import {CurrentUserService} from '../../../../core/services/current-user.service
 import {switchMap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 
 interface LoginForm {
   username: string;
@@ -22,7 +23,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private currentUserService: CurrentUserService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
   }
 
@@ -38,7 +40,8 @@ export class LoginPageComponent implements OnInit {
         this.authService.loadProfile()
       )).subscribe(profile => {
         this.currentUserService.user$.next(profile);
-        this.router.navigateByUrl('/');
+        this.dialog.closeAll();
+       // this.router.navigateByUrl('/');
       },
       error => {
         this.form.control.setErrors({

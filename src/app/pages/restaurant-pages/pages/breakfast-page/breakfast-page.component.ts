@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Breakfast} from "../../../../features/restaurant/models/breakfast-model";
-import {BreakfastService} from "../../../../features/restaurant/services/breakfast.service";
+import {BreakfastService} from '../../../../features/restaurant/services/breakfast.service';
+import {Breakfast} from '../../../../features/restaurant/models/breakfast-model';
 
 @Component({
   selector: 'app-breakfast-page',

@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
   <h1 routerLink="/" class="header-button">{{title}}</h1>
   <div class="nav-buttons">
-    <a class="toolbar-button" mat-raised-button routerLink="restaurant">Restaurants</a>
-    <a class="toolbar-button" mat-raised-button routerLink="basket">
+    <a *ngIf="check" class="toolbar-button" mat-raised-button routerLink="restaurant">Restaurants</a>
+    <a *ngIf="check" class="toolbar-button" mat-raised-button routerLink="basket">
       <mat-icon>shopping_cart</mat-icon>
     </a>
+    <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button routerLink="orders/allOrders">Orders</a>
+    <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button
+       routerLink="orders/orderStatus">Order Status</a>
+
   </div>
   <div class="account-group-buttons">
-    <app-user-menu ></app-user-menu>
-    <!--
-    <a class="toolbar-button" mat-raised-button routerLink="registration" color="accent"
-       *ngIf="isLoggedIn">Registration</a>
-    <a class="toolbar-button" mat-raised-button routerLink="my-account" *ngIf="isLoggedIn">My Profile</a>-->
+    <app-user-menu></app-user-menu>
   </div>
 </mat-toolbar>
 

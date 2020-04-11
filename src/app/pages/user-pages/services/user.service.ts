@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../pages/registration/user-model';
+import {User} from '../models/user-model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -12,6 +12,6 @@ export class UserService {
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>('/users', user); /*нужно будет указать правильный путь*/
+    return this.http.post<User>('http://localhost:8080/api/users', user); /*нужно будет указать правильный путь*/
   }
 }
