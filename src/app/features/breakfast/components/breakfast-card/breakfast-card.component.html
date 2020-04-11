@@ -1,0 +1,19 @@
+<mat-card class="breakfast-card">
+  <mat-card-title> {{breakfast.name}}</mat-card-title>
+  <mat-card-subtitle> {{breakfast.tag}} </mat-card-subtitle>
+  <img mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
+  <mat-card-content>
+    <div>Price: {{breakfast.price}}</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-stroked-button color="primary" (click)="handleAddToBasket()" *ngIf="!inBasket">
+      <mat-icon>add_shopping_cart</mat-icon>
+      Add to basket
+    </a>
+    <a mat-stroked-button color="accent" (click)="handleRemoveFromBasket()" *ngIf="inBasket">
+      <mat-icon>remove_shopping_cart</mat-icon>
+      Remove from basket
+    </a>
+  </mat-card-actions>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

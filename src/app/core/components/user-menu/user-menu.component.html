@@ -1,22 +1,19 @@
 <div *ngIf="user$ | async as user">
   <ng-container *ngIf="user.authenticated; else logInButton">
-    <span class="username">{{user.info.username}}</span>
-
-    <button class="user-menu-button" mat-stroked-button (click)="handleLogoutClick()">
+    <a class="user-menu-button" mat-raised-button routerLink="account/{{user.info.id}}">
+      <mat-icon>account_circle</mat-icon> {{user.info.username}}
+    </a>
+    <button class="user-menu-button" mat-flat-button color="warn" (click)="handleLogoutClick()">
+      <mat-icon>exit_to_app</mat-icon>
       Log Out
     </button>
-
-    <a class="user-menu-button" mat-raised-button routerLink="my-account">
-      <mat-icon>account_circle</mat-icon>
-    </a>
   </ng-container>
 
   <ng-template #logInButton>
-    <button class="user-menu-button" (click)="handleLoginDialogOpen()" *ngIf="!user.authenticated" mat-flat-button color="accent">
-      <!--routerLink="/auth/login"-->
+    <button class="user-menu-button" mat-raised-button color="accent" (click)="handleLoginDialogOpen()">
       Log In
     </button>
-    <a class="user-menu-button" mat-raised-button routerLink="registration" color="accent">
+    <a class="user-menu-button" mat-raised-button color="accent" routerLink="registration">
       Registration
     </a>
   </ng-template>

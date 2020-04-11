@@ -14,7 +14,7 @@ const routes: Routes = [
         component: RestaurantPageComponent,
       },
       {
-        path: ':id/breakfasts',
+        path: ':restaurantId/breakfasts',
         component: BreakfastPageComponent
       }
     ]

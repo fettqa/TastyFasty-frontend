@@ -8,6 +8,8 @@ import {OrderResolver} from "./resolvers/order.resolver";
 const routes: Routes = [
   {
     path: '',
+    canActivate: [OrderPageGuard],
+    runGuardsAndResolvers: 'always',
     children: [
       {
         path: '',
@@ -29,4 +31,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OrderPagesRoutingModule { }
+export class OrderPagesRoutingModule {
+}

@@ -1,5 +1,7 @@
 export enum Role {
-  ADMIN = 'ROLE_ADMIN', USER = 'ROLE_USER', DELIVERY_MAN = "DELIVERY_MAN"
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  DELIVERY = 'DELIVERY'
 }
 
 export interface AnonymousUser {
@@ -9,8 +11,9 @@ export interface AnonymousUser {
 export interface LoggedUser {
   authenticated: true;
   info: {
+    id: number,
     username: string;
-    roles: Role[];
+    role: Role;
   };
 }
 
