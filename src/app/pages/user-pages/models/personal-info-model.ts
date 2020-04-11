@@ -1,4 +1,5 @@
-import {Address} from '../../../features/restaurant/models/address-model';
+import {Address} from "../../../shared/models/address-model";
+
 
 export interface PersonalInfo {
   firstName: string;

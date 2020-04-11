@@ -1,8 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MyAccountComponent} from './pages/my-account/my-account.component';
-import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket-page.component';
-import {DashboardGuard} from './core/guards/dashboard.guard';
 
 
 const routes: Routes = [
@@ -18,12 +15,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
   },
   {
-    path: 'basket',
-    loadChildren: () => import('./pages/basket-pages/basket-pages.module').then(m => m.BasketPagesModule)
-  },
-  {
-    path: 'my-account',
-    component: MyAccountComponent
+    path: 'account/:userId',
+    loadChildren: () => import('./pages/account-pages/account-pages.module').then(m => m.AccountPagesModule)
   },
   {
     path: 'registration',

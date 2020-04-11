@@ -1,4 +1,3 @@
-import {Address} from '../../../features/restaurant/models/address-model';
 import {PersonalInfo} from './personal-info-model';
 
 export interface User {

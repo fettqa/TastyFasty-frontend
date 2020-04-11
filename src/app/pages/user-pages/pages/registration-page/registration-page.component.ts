@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {Address} from '../../../../features/restaurant/models/address-model';
 import {User} from '../../models/user-model';
 import {UserService} from '../../services/user.service';
 import {Role} from '../../../../core/models/current-user.model';
+import {Address} from "../../../../shared/models/address-model";
 
 
 interface CreateFirstForm {

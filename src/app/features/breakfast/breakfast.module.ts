@@ -4,7 +4,6 @@ import {BreakfastCardComponent} from "./components/breakfast-card/breakfast-card
 import {MatCardModule} from "@angular/material/card";
 import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
-import {BreakfastService} from "./services/breakfast.service";
 import {MatIconModule} from "@angular/material/icon";
 
 

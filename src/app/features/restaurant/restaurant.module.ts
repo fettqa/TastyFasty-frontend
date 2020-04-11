@@ -4,7 +4,6 @@ import {RestaurantCardComponent} from './components/restaurant-card/restaurant-c
 import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from "@angular/material/button";
-import {RestaurantService} from "./services/restaurant.service";
 
 
 @NgModule({

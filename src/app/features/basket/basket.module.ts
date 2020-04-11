@@ -6,7 +6,6 @@ import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {OrderInfoComponent} from './components/order-info/order-info.component';
-import {AppModule} from "../../app.module";
 import {ChooseQuantityComponent} from "./components/choose-quantity/choose-quantity.component";
 
 
