@@ -10,7 +10,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
-import {SignInDialogComponent} from './components/sign-in-dialog/sign-in-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -18,19 +17,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationPageComponent} from './pages/registration/registration-page.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MyAccountComponent} from './pages/my-account/my-account.component';
 import {MatIconModule} from '@angular/material/icon';
-import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
-import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket-page.component';
+import { ChooseQuantityComponent } from './features/basket/components/choose-quantity/choose-quantity.component';
+import {MyFormsModule} from "./shared/my-forms/my-forms.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    BasketPageComponent,
-    SignInDialogComponent,
-    RegistrationPageComponent,
-    MyAccountComponent
+    RegistrationPageComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +45,7 @@ import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket
     MatRadioModule,
     MatStepperModule,
     ReactiveFormsModule,
-    MatIconModule,
-    RestaurantModule
+    MatIconModule
   ],
   bootstrap: [AppComponent]
 })

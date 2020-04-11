@@ -1,0 +1,16 @@
+<mat-card class="order-info-card">
+  <mat-card-title>Full price: {{fullPrice}}</mat-card-title>
+  <mat-card-content>
+    <div>
+      Choose number of persons: <app-choose-quantity [num]="numOfPersons"></app-choose-quantity>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary">
+      <mat-icon>shop</mat-icon> Make order
+    </a>
+    <a mat-raised-button color="warn">
+      <mat-icon>remove_shopping_cart</mat-icon> Remove all items from basket
+    </a>
+  </mat-card-actions>
+</mat-card>

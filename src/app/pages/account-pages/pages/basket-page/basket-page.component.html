@@ -1,0 +1,6 @@
+<div class="basket-item-card" *ngFor="let basketItem of basketItems">
+  <app-basket-item-card [basketItem]="basketItem" [itemsToOrder]="itemsToOrder"></app-basket-item-card>
+</div>
+<div>
+  <app-order-info [numOfPersons]="numOfPersons" [fullPrice]="fullPrice"></app-order-info>
+</div>

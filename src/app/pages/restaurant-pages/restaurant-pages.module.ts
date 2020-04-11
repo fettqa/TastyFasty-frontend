@@ -5,6 +5,7 @@ import {RestaurantPagesRoutingModule} from './restaurant-pages-routing.module';
 import {RestaurantPageComponent} from './pages/restaurant-page/restaurant-page.component';
 import {RestaurantModule} from '../../features/restaurant/restaurant.module';
 import {BreakfastPageComponent} from "./pages/breakfast-page/breakfast-page.component";
+import {BreakfastModule} from "../../features/breakfast/breakfast.module";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {BreakfastPageComponent} from "./pages/breakfast-page/breakfast-page.comp
   imports: [
     CommonModule,
     RestaurantPagesRoutingModule,
-    RestaurantModule
+    RestaurantModule,
+    BreakfastModule
   ]
 })
 export class RestaurantPagesModule {}

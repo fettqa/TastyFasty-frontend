@@ -10,12 +10,12 @@ import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [UserMenuComponent],
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        RouterModule,
-        MatIconModule
-    ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    RouterModule,
+    MatIconModule
+  ],
   providers: [
     LOGGING_INTERCEPTOR,
     LOAD_CURRENT_USER_INITIALIZER,

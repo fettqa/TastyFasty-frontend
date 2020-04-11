@@ -1,22 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RegistrationPageComponent} from './pages/registration/registration-page.component';
-import {MyAccountComponent} from './pages/my-account/my-account.component';
-import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket-page.component';
+import {AccountPageComponent} from './pages/account-pages/pages/account-page/account-page.component';
 
 
 const routes: Routes = [
   {
-    path: 'restaurant',
+    path: 'restaurants',
     loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
   },
   {
-    path: 'basket',
-    component: BasketPageComponent
-  },
-  {
-    path: 'my-account',
-    component: MyAccountComponent
+    path: 'account/:userId',
+    loadChildren: () => import('./pages/account-pages/account-pages.module').then(m => m.AccountPagesModule)
   },
   {
     path: 'registration',
