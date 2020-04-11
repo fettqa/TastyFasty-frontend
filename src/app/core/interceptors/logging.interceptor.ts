@@ -1,11 +1,14 @@
 import {Injectable, Provider} from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
+  HTTP_INTERCEPTORS,
   HttpEvent,
-  HttpInterceptor, HTTP_INTERCEPTORS
+  HttpEventType,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {tap} from "rxjs/operators";
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
@@ -14,7 +17,14 @@ export class LoggingInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    return next.handle(request).pipe(
+      tap(response => {
+        if (response.type == HttpEventType.Response) {
+        console.info('request', request.url,request.body)
+        console.info('response', response.url, response.body)
+      }
+      })
+    );
   }
 }
 

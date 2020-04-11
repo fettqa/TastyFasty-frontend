@@ -23,6 +23,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
 import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket-page.component';
+import {LOGGING_INTERCEPTOR} from "./core/interceptors/logging.interceptor";
+import {HomePageComponent} from "./pages/home-pages/pages/home-page/home-page.component";
+import {OrdersModule} from "./features/orders/orders.module";
+import {HomePagesModule} from "./pages/home-pages/home-pages.module";
 
 @NgModule({
   declarations: [
@@ -51,7 +55,12 @@ import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket
     MatStepperModule,
     ReactiveFormsModule,
     MatIconModule,
-    RestaurantModule
+    RestaurantModule,
+    OrdersModule,
+    HomePagesModule
+  ],
+  providers: [
+    LOGGING_INTERCEPTOR
   ],
   bootstrap: [AppComponent]
 })

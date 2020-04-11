@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="user$ | async as user">
   <h1 routerLink="/" class="header-button">{{title}}</h1>
   <div class="nav-buttons">
     <a class="toolbar-button" mat-raised-button routerLink="restaurant">Restaurants</a>

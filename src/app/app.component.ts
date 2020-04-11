@@ -4,6 +4,7 @@ import {SignInDialogComponent} from './components/sign-in-dialog/sign-in-dialog.
 import {RegistrationPageComponent} from './pages/registration/registration-page.component';
 import {CurrentUserService} from './core/services/current-user.service';
 import {map} from 'rxjs/operators';
+import {Role} from "./core/models/current-user.model";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   isLoggedIn: boolean = true;
 
   user$ = this.currentUser.user$.pipe();
+  role: Role;
 
   constructor(private dialogService: MatDialog, private currentUser: CurrentUserService) {
   }

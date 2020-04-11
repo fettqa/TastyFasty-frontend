@@ -1,4 +1,5 @@
 .header-button {
+  display: inline;
   cursor: pointer;
 }
 
@@ -21,5 +22,10 @@
 
 .account-group-buttons a {
   display: inline;
+}
+
+.home-icon{
+  display: inline;
+  margin: auto 20px auto auto;
 }
 
