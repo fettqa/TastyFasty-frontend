@@ -3,8 +3,6 @@ import {Observable} from 'rxjs';
 import {CurrentUser} from '../models/current-user.model';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {LoginData} from '../models/auth.model';
-import {catchError} from 'rxjs/operators';
-import {CurrentUserService} from './current-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +17,6 @@ export class AuthService {
   loadProfile(): Observable<CurrentUser> {
     if (this.cu === undefined) {
       return this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
-
     } else {
       return this.cu;
     }

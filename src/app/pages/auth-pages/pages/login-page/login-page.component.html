@@ -1,5 +1,4 @@
-<form #form="ngForm"
-      (ngSubmit)="handleLoginSubmit(form.value)">
+<form #form="ngForm" (ngSubmit)="handleLoginSubmit(form.value)">
 
   <div mat-dialog-content *ngIf="form.errors?.server == true" class="error">
     Incorrect login or password

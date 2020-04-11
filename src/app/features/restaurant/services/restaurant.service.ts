@@ -12,6 +12,6 @@ export class RestaurantService {
   }
 
   getRestaurants(): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>('/api/restaurants'); /*нужно будет указать правильный путь*/
+    return this.http.get<Restaurant[]>('/api/restaurants');
   }
 }

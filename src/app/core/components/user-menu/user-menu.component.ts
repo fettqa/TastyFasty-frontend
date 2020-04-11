@@ -13,11 +13,16 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class UserMenuComponent implements OnInit {
 
-  readonly user$ = this.currentUser.user$;
-  constructor(private currentUser: CurrentUserService, private authService: AuthService,
-              private activeRoute: ActivatedRoute,
-              private router: Router,
-              private dialogService: MatDialog) {
+  readonly user$ = this.currentUserService.user$;
+
+  constructor(
+    private currentUserService: CurrentUserService,
+    private authService: AuthService,
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private dialogService: MatDialog
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -28,7 +33,7 @@ export class UserMenuComponent implements OnInit {
     this.authService.logout().pipe(
       switchMap(() => this.authService.loadProfile())
     ).subscribe(user => {
-      this.currentUser.user$.next(user);
+      this.currentUserService.user$.next(user);
       this.router.navigate([''], {
         relativeTo: this.activeRoute
       });
@@ -37,6 +42,6 @@ export class UserMenuComponent implements OnInit {
   }
 
   handleLoginDialogOpen() {
-    const dialog = this.dialogService.open(LoginPageComponent);
+    this.dialogService.open(LoginPageComponent);
   }
 }

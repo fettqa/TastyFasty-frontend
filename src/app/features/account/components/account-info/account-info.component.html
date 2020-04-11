@@ -1,0 +1,19 @@
+<mat-card class="user-card">
+  <mat-card-title> {{user.personalInfo.firstName + " " + user.personalInfo.lastName}}</mat-card-title>
+  <mat-card-subtitle> {{user.username}} </mat-card-subtitle>
+  <img mat-card-image src="{{toBase64(user.personalInfo.img)}}" alt="{{user.personalInfo.img}}">
+  <mat-card-content>
+    <div>
+      Address: {{user.personalInfo.address.city + " " +
+    user.personalInfo.address.building + " " +
+    user.personalInfo.address.street}}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-stroked-button color="primary">Edit</a>
+    <a mat-stroked-button (click)="handleBasketButton()">
+      <mat-icon>shopping_cart</mat-icon><!--*ngIf="basketId" routerLink="basket/{{basketId}}"-->
+    </a>
+  </mat-card-actions>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

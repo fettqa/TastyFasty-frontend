@@ -1,19 +1,67 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Restaurant} from '../../models/restaurant-model';
+import {Breakfast} from "../../models/breakfast-model";
+import {BasketFillingService} from "../../../basket/services/basket-filling.service";
+import {BasketService} from "../../../basket/services/basket.service";
+import {Basket} from "../../../basket/models/basket-model";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-restaurant-card',
-  templateUrl: './restaurant-card.component.html',
-  styleUrls: ['./restaurant-card.component.scss']
+  selector: 'app-breakfast-card',
+  templateUrl: './breakfast-card.component.html',
+  styleUrls: ['./breakfast-card.component.scss'],
+  providers: [BasketFillingService]
 })
-export class RestaurantCardComponent implements OnInit {
+export class BreakfastCardComponent implements OnInit {
 
   @Input()
-  restaurant!: Restaurant;
+  breakfast!: Breakfast;
 
-  constructor() { }
+  inBasket: boolean = false;
 
-  ngOnInit(): void {
+  userId: number = 8;
+
+  constructor(
+    private basketFillingService: BasketFillingService,
+    private basketService: BasketService
+  ) { }
+
+  ngOnInit(): void {  }
+
+  handleAddToBasket(): void {
+    this.basketService.getBasketByUserId(this.userId).subscribe(basket => {
+      if (basket == undefined) {
+        const newBasket: Basket = {
+          userID: this.userId,
+          fullPrice: 0,
+          numberOfPersons: 1
+        };
+        this.basketService.createBasket(this.userId, newBasket).subscribe(createdBasket => {
+          this.basketFillingService.addToBasket(createdBasket.basketID, this.breakfast).subscribe(
+            result => {
+              if (result != null) {
+                this.inBasket = true
+              }
+            }
+          );
+        })
+      } else {
+        this.basketFillingService.addToBasket(basket.basketID, this.breakfast).subscribe(
+          result => {
+            if (result != null) {
+              this.inBasket = true
+            }
+          }
+        );
+      }
+    });
+
+  }
+
+  handleRemoveFromBasket(): void {
+    this.basketService.getBasketByUserId(this.userId).subscribe(basket => {
+      this.basketFillingService.removeFromBasket(basket.basketID, this.breakfast.id);
+      this.inBasket = false;
+    });
   }
 
   toBase64(img: number[]): string {

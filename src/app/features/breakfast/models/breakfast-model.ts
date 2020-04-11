@@ -1,5 +1,5 @@
 export interface Breakfast {
-  breakfastId: number;
+  id: number;
   name: string;
   tag: string;
   price: number;
