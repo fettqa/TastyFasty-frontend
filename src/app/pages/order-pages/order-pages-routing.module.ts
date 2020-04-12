@@ -1,22 +1,30 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {OrderPageComponent} from './pages/order-page/order-page.component';
-import {OrderStatusPageComponent} from './pages/order-status-page/order-status-page.component';
-import {OrderPageGuard} from './guards/order-page.guard';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import {OrdersPageComponent} from "./pages/orders-page/orders-page.component";
+import {OrderDetailsComponent} from "./pages/order-details-page/order-details.component";
+import {OrderResolver} from "./resolvers/order.resolver";
+import {OrderPageGuard} from "./guards/order-page.guard";
 
 
 const routes: Routes = [
   {
-    path: 'allOrders',
+    path: '',
     canActivate: [OrderPageGuard],
     runGuardsAndResolvers: 'always',
-    component: OrderPageComponent
-  },
-  {
-    path: 'orderStatus',
-    canActivate: [OrderPageGuard],
-    runGuardsAndResolvers: 'always',
-    component: OrderStatusPageComponent
+    children: [
+      {
+        path: 'orders',
+        pathMatch: 'full',
+        component: OrdersPageComponent,
+      },
+      {
+        path: ':orderId/details',
+        component: OrderDetailsComponent,
+        /*resolve: {
+          order: OrderResolver
+        }*/
+      }
+    ]
   }
 ];
 

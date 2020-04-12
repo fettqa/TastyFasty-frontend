@@ -21,12 +21,16 @@ import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
 import {RegistrationPageComponent} from './pages/user-pages/pages/registration-page/registration-page.component';
 import {PermissionsModule} from './features/permissions/permissions.module';
-
+import {OrdersModule} from "./features/orders/orders.module";
+import {LOGGING_INTERCEPTOR} from "./core/interceptors/logging.interceptor";
+import {HomePagesModule} from "./pages/home-pages/home-pages.module";
+import {MatTableModule} from "@angular/material/table";
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    MatRadioModule,
     BrowserModule,
     CommonModule,
     CoreModule,
@@ -41,12 +45,18 @@ import {PermissionsModule} from './features/permissions/permissions.module';
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    MatRadioModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatIconModule,
     RestaurantModule,
     PermissionsModule,
+    RestaurantModule,
+    OrdersModule,
+    HomePagesModule,
+    MatTableModule
+  ],
+  providers: [
+    LOGGING_INTERCEPTOR
   ],
   bootstrap: [AppComponent]
 })

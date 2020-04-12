@@ -1,18 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="user$ | async as user">
   <h1 routerLink="/" class="header-button">{{title}}</h1>
   <div class="nav-buttons">
     <a *ngIf="check" class="toolbar-button" mat-raised-button routerLink="restaurant">Restaurants</a>
-
-    <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button routerLink="orders/allOrders">Orders</a>
-    <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button
-       routerLink="orders/orderStatus">Order Status</a>
-
+    <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button routerLink="orders">Orders</a>
   </div>
   <div class="account-group-buttons">
     <app-user-menu></app-user-menu>
   </div>
 </mat-toolbar>
-
 
 <div>
   <router-outlet></router-outlet>

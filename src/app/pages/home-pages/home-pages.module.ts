@@ -6,10 +6,12 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 
 
 @NgModule({
-  declarations: [HomePageComponent],
+  declarations: [
+    HomePageComponent
+  ],
     imports: [
         CommonModule,
         HomePagesRoutingModule,
-    ]
+    ],
 })
 export class HomePagesModule { }
