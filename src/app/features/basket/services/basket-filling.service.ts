@@ -2,6 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {Breakfast} from "../../breakfast/models/breakfast-model";
+import {BasketItem} from "../models/basket-item-model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,24 @@ export class BasketFillingService {
 
   constructor(private http: HttpClient) {  }
 
-  getBasketItems(basketId: number): Observable<Breakfast[]> {
+  getBasketItems(basketId: number): Observable<BasketItem[]> {
+    return this.http.get<BasketItem[]>(`/api/basket/${basketId}/asBasketItems`);
+  }
+
+  getBreakfastsInBasket(basketId: number): Observable<Breakfast[]> {
     return this.http.get<Breakfast[]>(`/api/basket/${basketId}`);
   }
 
-  addToBasket(basketId: number, breakfast: Breakfast): Observable<Breakfast> {
-    return this.http.post<Breakfast>(`/api/basket/${basketId}`, breakfast);
+  addToBasket(basketId: number, basketItem: BasketItem): Observable<BasketItem> {
+    return this.http.post<BasketItem>(`/api/basket/${basketId}`, basketItem);
+  }
+
+  updateBasketItem(basketId: number, basketItem: BasketItem): Observable<BasketItem> {
+    return this.http.put<BasketItem>(`/api/basket/${basketId}/${basketItem.basketItemID}`, basketItem)
   }
 
   removeFromBasket(basketId: number, breakfastId: number): void {
-    let s = `http://localhost:8080/api/basket/${basketId}/${breakfastId}`;
-    console.log(s);
-    this.http.delete(s).subscribe();
+    this.http.delete(`/api/basket/${basketId}/${breakfastId}`).subscribe();
   }
 
   removeAllFromBasket(basketId: number): void {

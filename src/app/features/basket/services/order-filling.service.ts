@@ -2,6 +2,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {Breakfast} from "../../breakfast/models/breakfast-model";
+import {BasketItem} from "../models/basket-item-model";
+import {OrderedBreakfast} from "../models/ordered-breakfast-model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +18,8 @@ export class OrderFillingService {
     return this.http.get<Breakfast[]>(`/api/order/${orderId}`);
   }
 
-  addToOrder(orderId: number, breakfast: Breakfast): Observable<Breakfast> {
-    return this.http.post<Breakfast>(`/api/order/${orderId}`, breakfast);
+  addToOrder(orderId: number, orderItem: OrderedBreakfast): Observable<OrderedBreakfast> {
+    return this.http.post<OrderedBreakfast>(`/api/order/${orderId}`, orderId);
   }
 
   removeFromOrder(orderId: number, breakfastId: number): void {

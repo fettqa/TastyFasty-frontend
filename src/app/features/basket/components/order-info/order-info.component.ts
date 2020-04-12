@@ -5,6 +5,8 @@ import {OrderFillingService} from "../../services/order-filling.service";
 import {ActivatedRoute} from "@angular/router";
 import {Order} from "../../models/order-model";
 import {Status} from "../../models/status";
+import {BasketItem} from "../../models/basket-item-model";
+import {OrderedBreakfast} from "../../models/ordered-breakfast-model";
 
 @Component({
   selector: 'app-order-info',
@@ -13,27 +15,31 @@ import {Status} from "../../models/status";
 })
 export class OrderInfoComponent implements OnInit {
 
-  @Input()
-  itemsToOrder: Breakfast[];
+  @Input() itemsToOrder!: BasketItem[];
+  @Input() basketPrice!: number;
+  @Input() orderPrice!: number;
 
-  @Input()
-  numOfPersons!: number;
+  numOfPersons: number = 0;
 
-  @Input()
-  fullPrice!: number;
-
-  constructor(private orderService: OrderService, private orderFillingService: OrderFillingService, private route: ActivatedRoute) { }
+  constructor(
+    private orderService: OrderService,
+    private orderFillingService: OrderFillingService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+
   }
 
   handleMakeOrderButton() {
     this.route.paramMap.subscribe(params => {
       const userId = Number(params.get('userId'));
+
+
       const orderToCreate: Order = {
         orderInfo: {
           name: "order",
-          price: this.fullPrice
+          price: this.orderPrice
         },
         status: Status.STARTED_MAKING,
         customerID: userId
@@ -41,10 +47,20 @@ export class OrderInfoComponent implements OnInit {
       this.orderService.createBasket(userId, orderToCreate).subscribe(createdOrder => {
         const orderId = createdOrder.orderID;
         for (let item of this.itemsToOrder) {
-          this.orderFillingService.addToOrder(orderId, item).subscribe();
+          const newOrderItem: OrderedBreakfast = {
+            orderID: orderId,
+            breakfastID: item.breakfastID
+          };
+          this.orderFillingService.addToOrder(orderId, newOrderItem).subscribe();
         }
       })
+
+
     });
+  }
+
+  handleNumOfPersons(num: number) {
+    this.numOfPersons = num;
   }
 
 }

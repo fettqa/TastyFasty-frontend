@@ -1,6 +1,14 @@
 <div class="basket-item-card" *ngFor="let basketItem of basketItems">
-  <app-basket-item-card [basketItem]="basketItem" [itemsToOrder]="itemsToOrder"></app-basket-item-card>
+  <app-basket-item-card
+    [basketItem]="basketItem"
+    (onChangeBasketItemStateEmitter)="onChangeBasketItemState($event)"
+    (onRemoveBasketItemEmitter)="onRemoveBasketItem($event)"
+  ></app-basket-item-card>
 </div>
 <div>
-  <app-order-info [numOfPersons]="numOfPersons" [fullPrice]="fullPrice"></app-order-info>
+  <app-order-info
+    [itemsToOrder]="basketItems"
+    [basketPrice]="basketPrice"
+    [orderPrice]="orderPrice"
+  ></app-order-info>
 </div>

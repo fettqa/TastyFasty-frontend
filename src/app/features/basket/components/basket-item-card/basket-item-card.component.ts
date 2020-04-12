@@ -1,8 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Breakfast} from "../../../breakfast/models/breakfast-model";
-import {BasketFillingService} from "../../services/basket-filling.service";
-import {OrderFillingService} from "../../services/order-filling.service";
-import {ActivatedRoute} from "@angular/router";
+import {BasketItem} from "../../models/basket-item-model";
+import {BreakfastService} from "../../../breakfast/services/breakfast.service";
 
 @Component({
   selector: 'app-basket-item-card',
@@ -11,37 +10,31 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class BasketItemCardComponent implements OnInit {
 
-  @Input()
-  basketItem!: Breakfast;
+  @Input() basketItem!: BasketItem;
 
-  @Input()
-  itemsToOrder!: Breakfast[];
+  @Output() onChangeBasketItemStateEmitter = new EventEmitter<BasketItem>();
+  @Output() onRemoveBasketItemEmitter = new EventEmitter<BasketItem>();
 
-  numOfItems: number = 1;
+  breakfast: Breakfast;
 
-  isOrdered: boolean = false;
+  constructor(private breakfastService: BreakfastService) {  }
 
-  constructor(
-    private basketFillingService: BasketFillingService,
-    private orderFillingService: OrderFillingService,
-    private route: ActivatedRoute
-  ) {  }
-
-  ngOnInit(): void {  }
-
-  handleAddToOrder(): void {
-
-  }
-
-  handleRemoveFromOrder(): void {
-
+  ngOnInit(): void {
+    this.breakfastService.getBreakfastById(this.basketItem.breakfastID).subscribe(breakfast => this.breakfast = breakfast);
   }
 
   handleRemoveFromBasket(): void {
-    this.route.paramMap.subscribe(params => {
-      const basketId = Number(params.get('basketId'));
-      this.basketFillingService.removeFromBasket(basketId, this.basketItem.id);
-    });
+    this.onRemoveBasketItemEmitter.emit(this.basketItem);
+  }
+
+  handleBasketItemStateChange(): void {
+    this.basketItem.readyToOrder = !this.basketItem.readyToOrder;
+    this.onChangeBasketItemStateEmitter.emit(this.basketItem);
+  }
+
+  handleNumChange(num: number) {
+    this.basketItem.numberOfItems = num;
+    this.onChangeBasketItemStateEmitter.emit(this.basketItem);
   }
 
   toBase64(img: number[]): string {

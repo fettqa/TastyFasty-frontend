@@ -3,6 +3,9 @@
     <a class="user-menu-button" mat-raised-button routerLink="account/{{user.info.id}}">
       <mat-icon>account_circle</mat-icon> {{user.info.username}}
     </a>
+    <a class="user-menu-button" mat-raised-button (click)="handleBasketButton()">
+      <mat-icon>shopping_cart</mat-icon> Basket
+    </a>
     <button class="user-menu-button" mat-flat-button color="warn" (click)="handleLogoutClick()">
       <mat-icon>exit_to_app</mat-icon>
       Log Out
