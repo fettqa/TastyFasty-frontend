@@ -5,18 +5,14 @@ import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren:() => import('./pages/home-pages/home-pages.module').then(m => m.HomePagesModule)
-  },
-  {
-    path: 'orders',
-    loadChildren:() => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
-  },
-  {
-    path: '',
 /*
     canActivate: [DashboardGuard],
 */
     loadChildren: () => import('./pages/home-pages/home-pages.module').then(m => m.HomePagesModule)
+  },
+  {
+    path: 'orders',
+    loadChildren:() => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
   },
   {
     path: 'restaurant',
@@ -33,11 +29,6 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth-pages/auth-pages.module').then(m => m.AuthPagesModule)
-
-  },
-  {
-    path: 'orders',
-    loadChildren: () => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
 
   }
 ];

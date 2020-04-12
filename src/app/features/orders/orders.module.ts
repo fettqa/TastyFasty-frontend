@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdersTableComponent } from './components/orders-table/orders-table.component';
+import { StatusPipe } from './pipe/status.pipe';
+import {RouterModule} from "@angular/router";
+import {MatTableModule} from "@angular/material/table";
 
 
 
 @NgModule({
-  declarations: [OrdersTableComponent],
+  declarations: [OrdersTableComponent, StatusPipe],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    MatTableModule
   ],
   exports: [
-    OrdersTableComponent
+    OrdersTableComponent,
+    StatusPipe
   ]
 })
 export class OrdersModule { }

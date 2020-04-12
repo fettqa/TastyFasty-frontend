@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {OrdersPageComponent} from "./pages/orders-page/orders-page.component";
 import {OrderDetailsComponent} from "./pages/order-details-page/order-details.component";
 import {OrderResolver} from "./resolvers/order.resolver";
+import {OrderPageGuard} from "./guards/order-page.guard";
 
 
 const routes: Routes = [
@@ -12,12 +13,12 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     children: [
       {
-        path: '',
+        path: 'orders',
         pathMatch: 'full',
         component: OrdersPageComponent,
       },
       {
-        path: ':id',
+        path: ':orderId/details',
         component: OrderDetailsComponent,
         /*resolve: {
           order: OrderResolver

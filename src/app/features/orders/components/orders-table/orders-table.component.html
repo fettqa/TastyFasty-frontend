@@ -1,1 +1,43 @@
-<p>orders-table works!</p>
+<table mat-table [dataSource]="orders" class="orders-table">
+
+    <ng-container matColumnDef = "orderId">
+      <th *matHeaderCellDef mat-header-cell>Order ID</th>
+      <td *matCellDef="let row">{{row.orderId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "restaurantId">
+      <th *matHeaderCellDef mat-header-cell>Restaurant ID</th>
+      <td *matCellDef="let row">{{row.restaurantId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "status">
+      <th *matHeaderCellDef mat-header-cell>Status</th>
+      <td *matCellDef="let row">{{row.status}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "tag">
+      <th *matHeaderCellDef mat-header-cell>Tag</th>
+      <td *matCellDef="let row">{{row.tag}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "customerId">
+      <th *matHeaderCellDef mat-header-cell>Cusomer ID</th>
+      <td *matCellDef="let row">{{row.customerId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef = "deliverymanId">
+      <th *matHeaderCellDef mat-header-cell>Deliveryman ID</th>
+      <td *matCellDef="let row">{{row.deliverymanId}}</td>
+    </ng-container>
+
+
+    <tr *matHeaderRowDef="columns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: columns" mat-row></tr>
+</table>
+
+

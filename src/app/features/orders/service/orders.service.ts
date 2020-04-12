@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
-import {Breakfast} from "../../restaurant/models/breakfast-model";
 import {Order} from "../models/order-model";
 
 @Injectable({
