@@ -1,5 +1,5 @@
 import {OrderInfo} from "./order-info-model";
-import {Status} from "./status";
+import {Status} from "../../features/basket/models/status";
 
 export interface Order {
   orderID?: number;

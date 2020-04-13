@@ -3,7 +3,7 @@ import {Breakfast} from "../../../breakfast/models/breakfast-model";
 import {OrderService} from "../../services/order.service";
 import {OrderFillingService} from "../../services/order-filling.service";
 import {ActivatedRoute} from "@angular/router";
-import {Order} from "../../models/order-model";
+import {Order} from "../../../../shared/models/order-model";
 import {Status} from "../../models/status";
 import {BasketItem} from "../../models/basket-item-model";
 import {OrderedBreakfast} from "../../models/ordered-breakfast-model";

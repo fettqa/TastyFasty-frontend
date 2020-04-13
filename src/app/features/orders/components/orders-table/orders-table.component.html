@@ -1,23 +1,22 @@
-<table mat-table [dataSource]="order" class="orders-table">
+<table mat-table [dataSource]="orders" class="orders-table">
 
-    <ng-container matColumnDef = "name">
+    <ng-container matColumnDef="name">
       <th *matHeaderCellDef mat-header-cell>Name</th>
       <td *matCellDef="let row">
         <a [routerLink]="row.id">
-          {{row.orderInfo.name}}
+          {{row.name}}
         </a>
       </td>
     </ng-container>
 
-
-    <ng-container matColumnDef = "status">
+    <ng-container matColumnDef="status">
       <th *matHeaderCellDef mat-header-cell>Status</th>
       <td *matCellDef="let row">{{row.status}}</td>
     </ng-container>
 
-    <ng-container matColumnDef = "tag">
+    <ng-container matColumnDef="tag">
       <th *matHeaderCellDef mat-header-cell>Tag</th>
-      <td *matCellDef="let row">{{row.orderInfo.tag}}</td>
+      <td *matCellDef="let row">{{row.tag}}</td>
     </ng-container>
 
 
