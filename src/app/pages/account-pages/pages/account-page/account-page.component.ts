@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user-model";
-import {ActivatedRoute} from "@angular/router";
+import {CurrentUserService} from "../../../../core/services/current-user.service";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-account',
@@ -13,17 +14,16 @@ export class AccountPageComponent implements OnInit {
 
   user?: User;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {  }
+  constructor(private userService: UserService, private currentUserService: CurrentUserService) {  }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      params => {
-        const userId = Number(params.get('userId'));
-        this.userService.getUserById(userId).subscribe(user => {
+    this.currentUserService.user$.pipe(map(user => {
+      if (user.authenticated) {
+        this.userService.getUserById(user.info.id).subscribe(user => {
           this.user = user;
         });
       }
-    );
+    })).subscribe();
   }
 
 }

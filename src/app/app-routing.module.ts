@@ -15,11 +15,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
   },
   {
-    path: 'restaurant',
+    path: 'restaurants',
     loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
   },
   {
-    path: 'account/:userId',
+    path: 'account',
     loadChildren: () => import('./pages/account-pages/account-pages.module').then(m => m.AccountPagesModule)
   },
   {

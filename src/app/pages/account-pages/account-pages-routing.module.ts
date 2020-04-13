@@ -15,7 +15,7 @@ const routes: Routes = [
         component: AccountPageComponent,
       },
       {
-        path: 'basket/:basketId',
+        path: 'basket',
         canActivate: [BasketPageGuard],
         runGuardsAndResolvers: 'always',
         component: BasketPageComponent

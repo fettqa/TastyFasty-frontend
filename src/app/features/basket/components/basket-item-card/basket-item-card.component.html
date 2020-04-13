@@ -1,4 +1,4 @@
-<mat-card class="basket-item-card">
+<mat-card class="basket-item-card" *ngIf="breakfast">
   <mat-card-title> {{breakfast.name}}</mat-card-title>
   <mat-card-subtitle> {{breakfast.tag}} </mat-card-subtitle>
   <img mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
@@ -6,7 +6,7 @@
     <div>Price: {{breakfast.price}}</div>
     <div>Choose number of portions:
       <app-choose-quantity
-        [num]="basketItem.numberOfItems"
+        [value]="basketItem.numberOfItems"
         (onChangeEmitter)="handleNumChange($event)"
       ></app-choose-quantity>
     </div>

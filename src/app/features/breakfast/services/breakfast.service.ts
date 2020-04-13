@@ -1,29 +1,21 @@
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Breakfast} from "../models/breakfast-model";
-import {Injectable, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BreakfastService {
 
-  restId?: number;
-
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(
-      params => {
-        this.restId = Number(params.get('restaurantId'));
-      }
-    );
+  constructor(private http: HttpClient) {
   }
 
-  getBreakfasts(): Observable<Breakfast[]> {
-    return this.http.get<Breakfast[]>(`/api/restaurants/${this.restId}/breakfasts`);
+  getBreakfasts(restId: number): Observable<Breakfast[]> {
+    return this.http.get<Breakfast[]>(`/api/restaurants/${restId}/breakfasts`);
   }
 
-  getBreakfastById(id: number): Observable<Breakfast> {
-    return this.http.get<Breakfast>(`/api/restaurants/${this.restId}/breakfasts/${id}`);
+  getBreakfastById(restId: number, breakfastId: number): Observable<Breakfast> {
+    return this.http.get<Breakfast>(`/api/restaurants/${restId}/breakfasts/${breakfastId}`);
   }
 }

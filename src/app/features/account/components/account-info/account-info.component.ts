@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../../shared/models/user-model";
-import {BasketService} from "../../../basket/services/basket.service";
-import {Basket} from "../../../basket/models/basket-model";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-info',
@@ -14,26 +11,9 @@ export class AccountInfoComponent implements OnInit {
   @Input()
   user!: User;
 
-  constructor(private basketService: BasketService, private router: Router) {  }
+  constructor() {  }
 
   ngOnInit(): void {  }
-
-  handleBasketButton() {
-    this.basketService.getBasketByUserId(this.user.id).subscribe(basket => {
-      if (basket == undefined) {
-        const newBasket: Basket = {
-          userID: this.user.id,
-          fullPrice: 0,
-          numberOfPersons: 1
-        };
-        this.basketService.createBasket(this.user.id, newBasket).subscribe(createdBasket => {
-          this.router.navigateByUrl(`/account/${this.user.id}/basket/${createdBasket.basketID}`)
-        })
-      } else {
-        this.router.navigateByUrl(`/account/${this.user.id}/basket/${basket.basketID}`)
-      }
-    });
-  }
 
   toBase64(img: number[]): string {
     //return "data:image/jpeg;base64," + String(img);

@@ -13,7 +13,6 @@ export class AppComponent {
   title: string = 'TastyFasty';
   Role = Role;
   check: boolean;
-  isLoggedIn: boolean = true;
 
   user$ = this.currentUser.user$.pipe();
   role: Role;
@@ -27,9 +26,5 @@ export class AppComponent {
           this.check = false;
         }
       });
-  }
-
-  handleRegistration() {
-    const dialog = this.dialogService.open(RegistrationPageComponent);
   }
 }

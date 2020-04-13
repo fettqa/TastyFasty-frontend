@@ -7,7 +7,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ChooseQuantityComponent implements OnInit {
 
-  @Input() num!: number;
+
+  @Input() value!: number;
   @Output() onChangeEmitter = new EventEmitter<number>();
 
   constructor() { }
@@ -16,11 +17,11 @@ export class ChooseQuantityComponent implements OnInit {
   }
 
   handlePlus() {
-    this.onChangeEmitter.emit(++this.num);
+    this.onChangeEmitter.emit(++this.value);
   }
 
   handleMinus() {
-    this.onChangeEmitter.emit(--this.num);
+    this.onChangeEmitter.emit(--this.value);
   }
 
 }

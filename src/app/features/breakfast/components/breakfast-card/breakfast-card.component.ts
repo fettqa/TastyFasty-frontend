@@ -17,7 +17,10 @@ export class BreakfastCardComponent implements OnInit {
   @Input()
   breakfast!: Breakfast;
 
-  inBasket: boolean = false;
+  inBasket: boolean;
+
+  currUserId?: number;
+  basketId?: number;
 
   constructor(
     private basketFillingService: BasketFillingService,
@@ -27,63 +30,67 @@ export class BreakfastCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUserService.user$.pipe(map(user => {
+      if (user.authenticated) {
+        this.currUserId = user.info.id;
+        this.basketService.getBasketByUserId(this.currUserId).subscribe(basket => {
+          if (basket != undefined) {
+            this.basketId = basket.basketID;
+            this.basketFillingService.getBreakfastsInBasket(this.basketId).subscribe(breakfasts => {
+              this.inBasket = breakfasts.find(breakfast => this.breakfast.id == breakfast.id) != null;
+            })
+          }
+        })
+      }
+    })).subscribe();
   }
 
   handleAddToBasket(): void {
-    this.currentUserService.user$.pipe(
-      map(user => {
-          if (user.authenticated) {
-            this.basketService.getBasketByUserId(user.info.id).subscribe(basket => {
-              if (basket == undefined) {
-                const newBasket: Basket = {
-                  userID: user.info.id,
-                  fullPrice: 0,
-                  numberOfPersons: 1
-                };
-                this.basketService.createBasket(user.info.id, newBasket).subscribe(createdBasket => {
-                  const newBasketItem: BasketItem = {
-                    basketID: createdBasket.basketID,
-                    breakfastID: this.breakfast.id,
-                    numberOfItems: 1,
-                    readyToOrder: false
-                  };
-                  this.basketFillingService.addToBasket(createdBasket.basketID, newBasketItem).subscribe(result => {
-                    if (result != null) {
-                      this.inBasket = true
-                    }
-                  });
-                })
-              } else {
-                const newBasketItem: BasketItem = {
-                  basketID: basket.basketID,
-                  breakfastID: this.breakfast.id,
-                  numberOfItems: 1,
-                  readyToOrder: false
-                };
-                this.basketFillingService.addToBasket(basket.basketID, newBasketItem).subscribe(result => {
-                  if (result != null) {
-                    this.inBasket = true
-                  }
-                });
+    if (this.currUserId != undefined) {
+      if (this.basketId != undefined) {
+          const newBasketItem: BasketItem = {
+            basketID: this.basketId,
+            breakfast: this.breakfast,
+            numberOfItems: 1,
+            readyToOrder: false
+          };
+          this.basketFillingService.addToBasket(this.basketId, newBasketItem).subscribe(result => {
+            if (result != null) {
+              this.inBasket = true
+            }
+          });
+        } else {
+          const newBasket: Basket = {
+            userID: this.currUserId,
+            fullPrice: 0,
+            numberOfPersons: 1
+          };
+          this.basketService.createBasket(this.currUserId, newBasket).subscribe(createdBasket => {
+            const newBasketItem: BasketItem = {
+              basketID: createdBasket.basketID,
+              breakfast: this.breakfast,
+              numberOfItems: 1,
+              readyToOrder: false
+            };
+            this.basketFillingService.addToBasket(createdBasket.basketID, newBasketItem).subscribe(result => {
+              if (result != null) {
+                this.inBasket = true
               }
             });
-          }
+          });
         }
-      )).subscribe();
+    } else {
+      console.log("unauth")
+    }
   }
 
   handleRemoveFromBasket(): void {
-    this.currentUserService.user$.pipe(
-      map(user => {
-          if (user.authenticated) {
-            this.basketService.getBasketByUserId(user.info.id).subscribe(basket => {
-              this.basketFillingService.removeFromBasket(basket.basketID, this.breakfast.id);
-              this.inBasket = false;
-            });
-          }
-        }
-      )
-    );
+    if (this.currUserId) {
+      this.basketService.getBasketByUserId(this.currUserId).subscribe(basket => {
+        this.basketFillingService.removeFromBasket(basket.basketID, this.breakfast.id);
+        this.inBasket = false;
+      });
+    }
   }
 
   toBase64(img: number[]): string {

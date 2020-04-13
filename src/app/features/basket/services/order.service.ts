@@ -10,7 +10,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) {  }
 
-  createBasket(userId: number, order: Order): Observable<Order> {
+  createOrder(userId: number, order: Order): Observable<Order> {
     return this.http.post<Order>(`/api/users/${userId}/orders`, order);
   }
 
