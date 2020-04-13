@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {OrderFillingService} from "../../services/order-filling.service";
-import {Order} from "../../models/order-model";
 import {Status} from "../../models/status";
 import {BasketItem} from "../../models/basket-item-model";
 import {OrderedBreakfast} from "../../models/ordered-breakfast-model";
+import {Order} from "../../../../shared/models/order-model";
 
 @Component({
   selector: 'app-order-info',

@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Order} from "../../models/order-model";
-import {Observable} from "rxjs";
-import {Restaurant} from "../../../restaurant/models/restaurant-model";
-import {HttpClient} from "@angular/common/http";
+import {Order} from "../../../../shared/models/order-model";
 
 
 @Component({
@@ -14,7 +11,7 @@ export class OrdersTableComponent implements OnInit {
   columns: [ 'name', 'status' , 'tag'];
 
   @Input()
-  order!: Order;
+  orders!: Order[];
 
   constructor() { }
 
