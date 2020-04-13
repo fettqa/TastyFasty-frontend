@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-choose-quantity',
@@ -7,8 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChooseQuantityComponent implements OnInit {
 
-  @Input()
-  num!: number;
+  @Input() num!: number;
+  @Output() onChangeEmitter = new EventEmitter<number>();
 
   constructor() { }
 
@@ -16,11 +16,11 @@ export class ChooseQuantityComponent implements OnInit {
   }
 
   handlePlus() {
-    this.num++;
+    this.onChangeEmitter.emit(++this.num);
   }
 
   handleMinus() {
-    this.num--;
+    this.onChangeEmitter.emit(--this.num);
   }
 
 }

@@ -1,12 +1,14 @@
 <mat-card class="order-info-card">
-  <mat-card-title>Full price: {{fullPrice}}</mat-card-title>
+  <mat-card-title>Basket price: {{basketPrice}}</mat-card-title>
+  <mat-card-title>Order price: {{orderPrice}}</mat-card-title>
   <mat-card-content>
     <div>
-      Choose number of persons: <app-choose-quantity [num]="numOfPersons"></app-choose-quantity>
+      Choose number of persons:
+      <app-choose-quantity [num]="numOfPersons" (onChangeEmitter)="handleNumOfPersons($event)"></app-choose-quantity>
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-raised-button color="primary">
+    <a mat-raised-button color="primary" (click)="handleMakeOrderButton()">
       <mat-icon>shop</mat-icon> Make order
     </a>
     <a mat-raised-button color="warn">

@@ -2,11 +2,7 @@
   <h1 routerLink="/" class="header-button">{{title}}</h1>
   <div class="nav-buttons">
     <a *ngIf="check" class="toolbar-button" mat-raised-button routerLink="restaurant">Restaurants</a>
-    <a *ngIf="check" class="toolbar-button" mat-raised-button routerLink="basket">
-      <mat-icon>shopping_cart</mat-icon>
-    </a>
     <a *appHasRole="[Role.ADMIN, Role.DELIVERY]" class="toolbar-button" mat-raised-button routerLink="orders">Orders</a>
-
   </div>
   <div class="account-group-buttons">
     <app-user-menu></app-user-menu>
@@ -16,6 +12,4 @@
 <div>
   <router-outlet></router-outlet>
 </div>
-
-
 

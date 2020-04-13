@@ -1,18 +1,25 @@
 <mat-card class="basket-item-card">
-  <mat-card-title> {{basketItem.name}}</mat-card-title>
-  <mat-card-subtitle> {{basketItem.tag}} </mat-card-subtitle>
-  <img mat-card-image src="{{toBase64(basketItem.img)}}" alt="{{basketItem.img}}">
+  <mat-card-title> {{breakfast.name}}</mat-card-title>
+  <mat-card-subtitle> {{breakfast.tag}} </mat-card-subtitle>
+  <img mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
   <mat-card-content>
-    <div>Price: {{basketItem.price}}</div>
-    <div>Choose number of portions: <app-choose-quantity [num]="numOfItems"></app-choose-quantity></div>
+    <div>Price: {{breakfast.price}}</div>
+    <div>Choose number of portions:
+      <app-choose-quantity
+        [num]="basketItem.numberOfItems"
+        (onChangeEmitter)="handleNumChange($event)"
+      ></app-choose-quantity>
+    </div>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-raised-button color="primary" *ngIf="!isOrdered" (click)="handleAddToOrder()">Add to order</a>
-    <a mat-raised-button color="accent" *ngIf="isOrdered" (click)="handleRemoveFromOrder()">Remove from order</a>
+
+    <a mat-raised-button color="primary" *ngIf="!basketItem.readyToOrder" (click)="handleBasketItemStateChange()">Add to order</a>
+    <a mat-raised-button color="accent" *ngIf="basketItem.readyToOrder" (click)="handleBasketItemStateChange()">Remove from order</a>
 
     <a mat-stroked-button color="warn" (click)="handleRemoveFromBasket()">
       <mat-icon>remove_shopping_cart</mat-icon> Remove from basket
     </a>
+
   </mat-card-actions>
   <mat-card-footer></mat-card-footer>
 </mat-card>

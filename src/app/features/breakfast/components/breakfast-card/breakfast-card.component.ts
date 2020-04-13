@@ -5,6 +5,7 @@ import {BasketService} from "../../../basket/services/basket.service";
 import {Basket} from "../../../basket/models/basket-model";
 import {CurrentUserService} from "../../../../core/services/current-user.service";
 import {map} from "rxjs/operators";
+import {BasketItem} from "../../../basket/models/basket-item-model";
 
 @Component({
   selector: 'app-breakfast-card',
@@ -40,14 +41,26 @@ export class BreakfastCardComponent implements OnInit {
                   numberOfPersons: 1
                 };
                 this.basketService.createBasket(user.info.id, newBasket).subscribe(createdBasket => {
-                  this.basketFillingService.addToBasket(createdBasket.basketID, this.breakfast).subscribe(result => {
+                  const newBasketItem: BasketItem = {
+                    basketID: createdBasket.basketID,
+                    breakfastID: this.breakfast.id,
+                    numberOfItems: 1,
+                    readyToOrder: false
+                  };
+                  this.basketFillingService.addToBasket(createdBasket.basketID, newBasketItem).subscribe(result => {
                     if (result != null) {
                       this.inBasket = true
                     }
                   });
                 })
               } else {
-                this.basketFillingService.addToBasket(basket.basketID, this.breakfast).subscribe(result => {
+                const newBasketItem: BasketItem = {
+                  basketID: basket.basketID,
+                  breakfastID: this.breakfast.id,
+                  numberOfItems: 1,
+                  readyToOrder: false
+                };
+                this.basketFillingService.addToBasket(basket.basketID, newBasketItem).subscribe(result => {
                   if (result != null) {
                     this.inBasket = true
                   }
@@ -56,7 +69,7 @@ export class BreakfastCardComponent implements OnInit {
             });
           }
         }
-      ));
+      )).subscribe();
   }
 
   handleRemoveFromBasket(): void {
