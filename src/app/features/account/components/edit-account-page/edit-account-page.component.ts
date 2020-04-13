@@ -1,15 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
-import {User} from '../../models/user-model';
-import {UserService} from '../../services/user.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {User} from '../../../../shared/models/user-model';
 import {Role} from '../../../../core/models/current-user.model';
+import {FormBuilder} from '@angular/forms';
 import {Address} from '../../../../shared/models/address-model';
-
+import {UserService} from '../../../../shared/services/user.service';
+import {ActivatedRoute} from '@angular/router';
 
 interface CreateFirstForm {
-  username?: string;
   password?: string;
-  role?: Role;
 }
 
 interface CreateSecondForm {
@@ -27,35 +25,45 @@ interface CreateThirdForm {
 
 
 @Component({
-  selector: 'app-registration-dialog',
-  templateUrl: './registration-page.component.html',
-  styleUrls: ['./registration-page.component.scss']
+  selector: 'app-edit-account-page',
+  templateUrl: './edit-account-page.component.html',
+  styleUrls: ['./edit-account-page.component.scss']
 })
-export class RegistrationPageComponent implements OnInit {
+export class EditAccountPageComponent implements OnInit {
+
+  user: User;
+
+  password?: string;
   firstName?: string;
   lastName?: string;
   middleName?: string;
   address?: Address;
-  username?: string;
-  password?: string;
   phoneNumber?: number;
-  role?: Role;
   isLinear = true;
   Role = Role;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+              private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(
+      params => {
+        const userId = Number(params.get('userId'));
+        this.userService.getUserById(userId).subscribe(user => {
+          this.user = user;
+          console.log('here');
+          console.log(this.user);
+          console.log(this.user.personalInfo);
+        });
+      }
+    );
   }
 
   handleFirstFormSubmit(value: CreateFirstForm) {
-    this.username = value.username;
     this.password = value.password;
-    this.role = value.role;
-    console.log(this.username, this.password, this.role);
   }
-
 
   handleSecondFormSubmit(value: CreateSecondForm) {
     this.firstName = value.firstName;
@@ -74,10 +82,10 @@ export class RegistrationPageComponent implements OnInit {
 
   handleHoleFormSubmit() {
     const userToPost: User = {
-      id : 89,
-      username: this.username,
+      id: this.user.id,
+      username: this.user.username,
       password: this.password,
-      role: this.role,
+      role: this.user.role,
       personalInfo: {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -88,13 +96,12 @@ export class RegistrationPageComponent implements OnInit {
       }
     };
     console.log(userToPost);
-    console.log(this.username, this.password);
-    this.userService.createUser(userToPost).subscribe(
+    console.log('user id to string' + this.user.id.toString());
+    this.userService.updateUser(this.user.id.toString(), userToPost).subscribe(
       user => {
         console.log(user);
       }
     );
   }
+
 }
-
-
