@@ -38,11 +38,13 @@ export class OrderInfoComponent implements OnInit {
         const orderToCreate: Order = {
           orderInfo: {
             name: "order",
+            tag: "",
             price: this.orderPrice
           },
           status: Status.STARTED_MAKING,
           restaurantID: order[0],
-          customerID: this.userId
+          customerID: this.userId,
+          deliverymanID: undefined
         };
 
         this.orderService.createOrder(this.userId, orderToCreate).subscribe(createdOrder => {
@@ -50,11 +52,13 @@ export class OrderInfoComponent implements OnInit {
             for (let i = 0; i < item.numberOfItems; i++) {
 
               const newOrderItem: OrderedBreakfast = {
-                orderID: createdOrder.orderID,
+                orderID: createdOrder.id,
                 breakfastID: item.breakfast.id
               };
 
-              this.orderFillingService.addToOrder(createdOrder.orderID, newOrderItem).subscribe();
+              this.orderFillingService.addToOrder(createdOrder.id, newOrderItem).subscribe(result => {
+                //this.itemsToOrder.splice(this.itemsToOrder.indexOf(item), 1); // todo
+              });
             }
           }
         })
@@ -64,17 +68,22 @@ export class OrderInfoComponent implements OnInit {
   sortBasketItemsByRests(): Map<number, BasketItem[]> {
     let res: Map<number, BasketItem[]> = new Map<number, BasketItem[]>();
     for (const item of this.itemsToOrder) {
-      if (res.has(item.breakfast.restaurantId)) {
-        res.get(item.breakfast.restaurantId).push(item);
-      } else {
-        res.set(item.breakfast.restaurantId, [item])
+      if (item.readyToOrder) {
+        if (res.has(item.breakfast.restaurantId)) {
+          res.get(item.breakfast.restaurantId).push(item);
+        } else {
+          res.set(item.breakfast.restaurantId, [item])
+        }
       }
     }
     return res;
   }
 
+  handleRemoveAllFromBasket() {
+
+  }
+
   handleNumOfPersons(num: number) {
     this.numOfPersons = num;
   }
-
 }
