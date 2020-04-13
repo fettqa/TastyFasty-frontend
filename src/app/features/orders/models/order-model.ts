@@ -1,18 +1,17 @@
 import {OrderStatus} from "../../../core/models/current-order.model";
+import {OrderInfo} from "../../basket/models/order-info-model";
 
 export interface Order {
-  orderId: number;
-  restaurantId: number;
+  id: number;
+  restaurantID: number;
+  customerID: number;
+  deliverymanID: number;
+  orderInfo: OrderInfo;
   status: OrderStatus;
-  name: string;
-  tag: string;
-  customerId: number;
-  deliverymanId: number
-   price: number;
 }
-
-export interface OrderBreakfasts {
-  orderBreakfastId: number;
-  orderId: number;
-  breakfastId: number;
-}
+//
+// export interface OrderBreakfasts {
+//   orderBreakfastId: number;
+//   orderId: number;
+//   breakfastId: number;
+// }

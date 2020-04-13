@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {Order} from "../models/order-model";
 
 @Injectable({
-  providedIn: OrdersService
+  providedIn: 'root'
 })
 export class OrdersService {
 
@@ -20,7 +20,7 @@ export class OrdersService {
   }
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`/api/orders/${this.restId}/order`);
+    return this.http.get<Order[]>(`/api/orders`);
   }
 
 

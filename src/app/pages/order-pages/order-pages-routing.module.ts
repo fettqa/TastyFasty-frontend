@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {OrdersPageComponent} from "./pages/orders-page/orders-page.component";
 import {OrderDetailsComponent} from "./pages/order-details-page/order-details.component";
-import {OrderResolver} from "./resolvers/order.resolver";
 import {OrderPageGuard} from "./guards/order-page.guard";
 
 
@@ -13,12 +12,12 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     children: [
       {
-        path: 'orders',
+        path: '',
         pathMatch: 'full',
         component: OrdersPageComponent,
       },
       {
-        path: ':orderId/details',
+        path: ':orderId',
         component: OrderDetailsComponent,
         /*resolve: {
           order: OrderResolver

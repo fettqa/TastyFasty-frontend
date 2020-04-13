@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Order} from "../../models/order-model";
+import {Observable} from "rxjs";
+import {Restaurant} from "../../../restaurant/models/restaurant-model";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -8,12 +11,7 @@ import {Order} from "../../models/order-model";
   styleUrls: ['./orders-table.component.scss']
 })
 export class OrdersTableComponent implements OnInit {
-  columns: ['orderId','restaurantId','status','name','tag','customerId','deliverymanId'];
-
-
-  @Input()
-  orders!: Order[];
-
+  columns: [ 'name', 'status' , 'tag'];
 
   @Input()
   order!: Order;

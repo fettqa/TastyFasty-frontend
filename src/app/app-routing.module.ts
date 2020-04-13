@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    loadChildren:() => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
+    loadChildren: () => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
   },
   {
     path: 'restaurant',
