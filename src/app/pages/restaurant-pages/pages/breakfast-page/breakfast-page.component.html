@@ -1,3 +1,4 @@
-<div class="breakfast-card" *ngFor="let breakfast of breakfasts">
-  <app-breakfast-card [breakfast]="breakfast"></app-breakfast-card>
-</div>
+<mat-grid-list cols="4" rowHeight="1:1.2">
+  <div class="breakfast-card" *ngFor="let breakfast of breakfasts">
+    <mat-grid-tile> <app-breakfast-card [breakfast]="breakfast"></app-breakfast-card></mat-grid-tile>
+  </div></mat-grid-list>

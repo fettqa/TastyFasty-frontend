@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AccountPageComponent} from "./pages/account-page/account-page.component";
-import {BasketPageComponent} from "./pages/basket-page/basket-page.component";
-import {BasketPageGuard} from "./guards/basket-page.guard";
+import {AccountPageComponent} from './pages/account-page/account-page.component';
+import {BasketPageComponent} from './pages/basket-page/basket-page.component';
+import {BasketPageGuard} from './guards/basket-page.guard';
+import {EditAccountPageComponent} from '../../features/account/components/edit-account-page/edit-account-page.component';
+import {AccountPageGuard} from './guards/account-page.guard';
 
 
 const routes: Routes = [
@@ -19,8 +21,14 @@ const routes: Routes = [
         canActivate: [BasketPageGuard],
         runGuardsAndResolvers: 'always',
         component: BasketPageComponent
+      },
+      {
+        path: 'edit/account',
+        component: EditAccountPageComponent
       }
-    ]
+    ],
+    canActivate: [AccountPageGuard],
+    runGuardsAndResolvers: 'always',
   }
 
 ];

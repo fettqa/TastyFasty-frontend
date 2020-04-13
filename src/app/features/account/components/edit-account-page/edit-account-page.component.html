@@ -1,0 +1,92 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <form #form="ngForm" class="my-form-sign-in" (ngSubmit)="handleFirstFormSubmit(form.value)">
+      <ng-template matStepLabel>Fill your username and password</ng-template>
+
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput name ="username" readonly ngModel="{{user.username}}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput required name="password" ngModel="Write your password or choose new one">
+      </mat-form-field>
+
+      <div>
+        <button [disabled]="!form.valid" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form #form1="ngForm" class="my-form-sign-in" (ngSubmit)="handleSecondFormSubmit(form1.value)">
+      <ng-template matStepLabel>Fill out your personal info</ng-template>
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput required  name="firstName" ngModel="{{user.personalInfo.firstName}}">
+
+      </mat-form-field>
+
+      <ng-template matStepLabel>Fill out your last name</ng-template>
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput required name="lastName"  ngModel="{{user.personalInfo.lastName}}">
+      </mat-form-field>
+
+      <ng-template matStepLabel>Fill out your last middle name</ng-template>
+      <mat-form-field>
+        <mat-label>Middle name</mat-label>
+        <input matInput name="middleName" ngModel="{{user.personalInfo.middleName}}">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button [disabled]="!form1.valid" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form #form2="ngForm" class="my-form-sign-in" (ngSubmit)="handleThirdFormSubmit(form2.value)">
+      <mat-label>Address</mat-label>
+      <ng-template matStepLabel>Fill out your address and phone number</ng-template>
+      <mat-form-field>
+        <mat-label>city</mat-label>
+        <input matInput required name="city"  ngModel="{{user.personalInfo.address.city}}">
+      </mat-form-field>
+
+      <ng-template matStepLabel>Fill out street</ng-template>
+      <mat-form-field>
+        <mat-label>street</mat-label>
+        <input matInput required name="street"  ngModel="{{user.personalInfo.address.street}}">
+      </mat-form-field>
+
+      <ng-template matStepLabel>Fill out building</ng-template>
+      <mat-form-field>
+        <mat-label>building</mat-label>
+        <input matInput required name="building"  ngModel="{{user.personalInfo.address.building}}">
+      </mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <mat-form-field>
+        <mat-label>phone number</mat-label>
+        <input matInput required name="phoneNumber"  ngModel="{{user.personalInfo.phoneNumber}}">
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button [disabled]="!form2.valid" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Save</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="handleHoleFormSubmit()">Save</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

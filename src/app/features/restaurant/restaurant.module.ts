@@ -4,6 +4,12 @@ import {RestaurantCardComponent} from './components/restaurant-card/restaurant-c
 import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from "@angular/material/button";
+import {RestaurantService} from "./services/restaurant.service";
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -12,7 +18,12 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule,
     MatCardModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatStepperModule
   ],
   exports: [RestaurantCardComponent]
 })

@@ -21,6 +21,7 @@ export class AccountPageComponent implements OnInit {
         const userId = Number(params.get('userId'));
         this.userService.getUserById(userId).subscribe(user => {
           this.user = user;
+          console.log(this.user);
         });
       }
     );

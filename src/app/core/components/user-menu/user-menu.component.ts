@@ -29,7 +29,6 @@ export class UserMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.user$);
   }
 
   handleLogoutClick() {

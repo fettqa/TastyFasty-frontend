@@ -11,12 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home-pages/home-pages.module').then(m => m.HomePagesModule)
   },
   {
-    path: 'orders',
-    loadChildren: () => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
+    path: 'restaurants',
+    loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
   },
   {
-    path: 'restaurant',
-    loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
+    path: 'basket',
+    loadChildren: () => import('./pages/basket-pages/basket-pages.module').then(m => m.BasketPagesModule)
   },
   {
     path: 'account/:userId',
@@ -29,6 +29,11 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth-pages/auth-pages.module').then(m => m.AuthPagesModule)
+
+  },
+  {
+    path: 'orders',
+    loadChildren: () => import('./pages/order-pages/order-pages.module').then(m => m.OrderPagesModule)
 
   }
 ];

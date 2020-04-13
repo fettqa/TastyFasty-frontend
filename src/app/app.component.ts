@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {CurrentUserService} from './core/services/current-user.service';
 import {Role} from './core/models/current-user.model';
-import {RegistrationPageComponent} from "./pages/user-pages/pages/registration-page/registration-page.component";
+import {map} from 'rxjs/operators';
+import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,14 @@ import {RegistrationPageComponent} from "./pages/user-pages/pages/registration-p
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title: string = 'TastyFasty';
+  title = 'TastyFasty';
   Role = Role;
   check: boolean;
-  isLoggedIn: boolean = true;
 
-  user$ = this.currentUser.user$.pipe();
-  role: Role;
-
-  constructor(private dialogService: MatDialog, private currentUser: CurrentUserService) {
+  constructor(private dialogService: MatDialog,
+              private currentUser: CurrentUserService,
+              private authService: AuthService
+  ) {
     this.check = true;
     const rolesArr = [Role.DELIVERY];
     this.currentUser.hasRole(...rolesArr)
@@ -29,7 +29,5 @@ export class AppComponent {
       });
   }
 
-  handleRegistration() {
-    const dialog = this.dialogService.open(RegistrationPageComponent);
-  }
+
 }

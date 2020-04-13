@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from '../../../../core/services/auth.service';
 import {CurrentUserService} from '../../../../core/services/current-user.service';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
@@ -47,12 +47,12 @@ export class LoginPageComponent implements OnInit {
         this.form.control.setErrors({
           server: true
         });
-        this.form.controls.username.setErrors({
+     /*   this.form.controls.username.setErrors({
           server: true
         });
         this.form.controls.password.setErrors({
           server: true
-        });
+        });*/
 
       }
     );

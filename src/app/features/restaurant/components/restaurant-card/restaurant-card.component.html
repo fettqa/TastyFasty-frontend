@@ -1,7 +1,7 @@
 <mat-card class="restaurant-card">
   <mat-card-title>{{restaurant.restaurantInfo.name}}</mat-card-title>
   <mat-card-subtitle>{{restaurant.restaurantInfo.tags}}</mat-card-subtitle>
-  <img mat-card-image src="{{toBase64(restaurant.restaurantInfo.img)}}" alt="{{restaurant.restaurantInfo.img}}">
+  <img mat-card-image class="img-card" src="{{toBase64(restaurant.restaurantInfo.img)}}" alt="{{restaurant.restaurantInfo.img}}">
   <mat-card-content>
     <div>
       {{restaurant.restaurantInfo.address.city + " " +
