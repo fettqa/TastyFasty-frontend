@@ -24,7 +24,7 @@ export class BasketFillingService {
   }
 
   updateBasketItem(basketId: number, basketItem: BasketItem): Observable<BasketItem> {
-    return this.http.put<BasketItem>(`/api/basket/${basketId}/${basketItem.basketItemID}`, basketItem)
+    return this.http.put<BasketItem>(`/api/basket/${basketId}/${basketItem.basketItemID}`, basketItem);
   }
 
   removeFromBasket(basketId: number, breakfastId: number): void {

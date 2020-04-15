@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step>
     <form #form="ngForm" class="my-form-sign-in" (ngSubmit)="handleFirstFormSubmit(form.value)">
       <ng-template matStepLabel>Fill your username and password</ng-template>

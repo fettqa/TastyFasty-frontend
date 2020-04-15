@@ -8,7 +8,7 @@ import {Order} from "../../../../shared/models/order-model";
   styleUrls: ['./orders-table.component.scss']
 })
 export class OrdersTableComponent implements OnInit {
-  columns: [ 'name', 'status' , 'tag'];
+  columns: string[] = [ 'name', 'status' , 'tag'];
 
   @Input()
   orders!: Order[];
