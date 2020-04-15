@@ -1,16 +1,23 @@
 <div *ngIf="basketId; then set else unset"></div>
 
 <ng-template #set>
-  <div class="basket-item-card" *ngFor="let basketItem of basketItems">
-    <app-basket-item-card
-      [basketItem]="basketItem"
-      (onChangeBasketItemStateEmitter)="onChangeBasketItemState($event)"
-      (onRemoveBasketItemEmitter)="onRemoveBasketItem($event)"
-    ></app-basket-item-card>
-  </div>
+  <mat-grid-list [cols]="cols" rowHeight="2:3" (window:resize)="onResize()">
+    <div class="basket-item-card" *ngFor="let basketItem of basketItems">
+      <mat-grid-tile>
+        <app-basket-item-card
+          [basketItem]="basketItem"
+          (onChangeBasketItemStateEmitter)="onChangeBasketItemState($event)"
+          (onRemoveBasketItemEmitter)="onRemoveBasketItem($event)"
+        ></app-basket-item-card>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+
+
   <div>
     <app-order-info
       [itemsToOrder]="basketItems"
+      (onRemoveItemToOrderEmitter)="onRemoveBasketItem($event)"
       [basketPrice]="basketPrice"
       [orderPrice]="orderPrice"
       [userId]="userId"

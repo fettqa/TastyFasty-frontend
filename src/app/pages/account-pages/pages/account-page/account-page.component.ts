@@ -21,7 +21,6 @@ export class AccountPageComponent implements OnInit {
       if (user.authenticated) {
         this.userService.getUserById(user.info.id).subscribe(user => {
           this.user = user;
-          console.log(this.user);
         });
       }
     })).subscribe();

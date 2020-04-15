@@ -34,10 +34,12 @@ export class BreakfastCardComponent implements OnInit {
       if (user.authenticated) {
         this.currUserId = user.info.id;
         this.basketService.getBasketByUserId(this.currUserId).subscribe(basket => {
-          if (basket != undefined) {
+          if (basket != null) {
             this.basketId = basket.basketID;
             this.basketFillingService.getBreakfastsInBasket(this.basketId).subscribe(breakfasts => {
-              this.inBasket = breakfasts.find(breakfast => this.breakfast.id == breakfast.id) != null;
+              if (breakfasts.length > 0) {
+                this.inBasket = breakfasts.find(breakfast => this.breakfast.id == breakfast.id) != null;
+              }
             })
           }
         })
@@ -48,37 +50,37 @@ export class BreakfastCardComponent implements OnInit {
   handleAddToBasket(): void {
     if (this.currUserId != undefined) {
       if (this.basketId != undefined) {
+        const newBasketItem: BasketItem = {
+          basketID: this.basketId,
+          breakfast: this.breakfast,
+          numberOfItems: 1,
+          readyToOrder: false
+        };
+        this.basketFillingService.addToBasket(this.basketId, newBasketItem).subscribe(result => {
+          if (result != null) {
+            this.inBasket = true
+          }
+        });
+      } else {
+        const newBasket: Basket = {
+          userID: this.currUserId,
+          fullPrice: 0.0,
+          numberOfPersons: 1
+        };
+        this.basketService.createBasket(this.currUserId, newBasket).subscribe(createdBasket => {
           const newBasketItem: BasketItem = {
-            basketID: this.basketId,
+            basketID: createdBasket.basketID,
             breakfast: this.breakfast,
             numberOfItems: 1,
             readyToOrder: false
           };
-          this.basketFillingService.addToBasket(this.basketId, newBasketItem).subscribe(result => {
+          this.basketFillingService.addToBasket(createdBasket.basketID, newBasketItem).subscribe(result => {
             if (result != null) {
               this.inBasket = true
             }
           });
-        } else {
-          const newBasket: Basket = {
-            userID: this.currUserId,
-            fullPrice: 0,
-            numberOfPersons: 1
-          };
-          this.basketService.createBasket(this.currUserId, newBasket).subscribe(createdBasket => {
-            const newBasketItem: BasketItem = {
-              basketID: createdBasket.basketID,
-              breakfast: this.breakfast,
-              numberOfItems: 1,
-              readyToOrder: false
-            };
-            this.basketFillingService.addToBasket(createdBasket.basketID, newBasketItem).subscribe(result => {
-              if (result != null) {
-                this.inBasket = true
-              }
-            });
-          });
-        }
+        });
+      }
     } else {
       console.log("unauth")
     }

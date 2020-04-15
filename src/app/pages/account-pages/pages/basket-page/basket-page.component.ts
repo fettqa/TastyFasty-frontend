@@ -20,6 +20,7 @@ export class BasketPageComponent implements OnInit {
 
   basketId: number;
   userId: number;
+  cols: number;
 
   constructor(
     private currentUserService: CurrentUserService,
@@ -44,6 +45,7 @@ export class BasketPageComponent implements OnInit {
         }
       }
     )).subscribe();
+    this.onResize();
   }
 
   onRemoveBasketItem(basketItem: BasketItem) {
@@ -60,14 +62,19 @@ export class BasketPageComponent implements OnInit {
   }
 
   recalcPrice() {
-    this.orderPrice = 0;
-    this.basketPrice = 0;
-    for (let item of this.basketItems) {
-      this.basketPrice += item.breakfast.price * item.numberOfItems;
-      if (item.readyToOrder) {
-        this.orderPrice += item.breakfast.price * item.numberOfItems;
+    if (this.basketItems.length > 0) {
+      this.orderPrice = 0;
+      this.basketPrice = 0;
+      for (let item of this.basketItems) {
+        this.basketPrice += item.breakfast.price * item.numberOfItems;
+        if (item.readyToOrder) {
+          this.orderPrice += item.breakfast.price * item.numberOfItems;
+        }
       }
     }
   }
 
+  onResize() {
+    this.cols = window.innerWidth / 400;
+  }
 }
