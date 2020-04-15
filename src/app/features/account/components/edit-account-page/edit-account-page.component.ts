@@ -53,9 +53,6 @@ export class EditAccountPageComponent implements OnInit {
         const userId = Number(params.get('userId'));
         this.userService.getUserById(userId).subscribe(user => {
           this.user = user;
-          console.log('here');
-          console.log(this.user);
-          console.log(this.user.personalInfo);
         });
       }
     );
