@@ -28,13 +28,14 @@
   </mat-list>
 </div>
 
+<mat-label class="status-label"> Order's status</mat-label>
 
 <div class="order-status">
-  <mat-vertical-stepper class="my-stepper" [linear]="true" #stepper>
+  <mat-horizontal-stepper class="my-stepper" [linear]="true" #stepper>
     <mat-step class="status-step">
       <form class="my-form-sign-in">
         <ng-template matStepLabel>{{Status.STARTED_MAKING | status}}</ng-template>
-        <div>Done
+        <div class="done-text">Done
           <button mat-icon-button
                   (click)="handleClickChange();
                   handleFormSubmit(Status.STARTED_MAKING);
@@ -153,5 +154,5 @@
         <button mat-button (click)="handleHoleFormSubmit()">Done</button>
       </div>
     </mat-step>-->
-  </mat-vertical-stepper>
+  </mat-horizontal-stepper>
 </div>

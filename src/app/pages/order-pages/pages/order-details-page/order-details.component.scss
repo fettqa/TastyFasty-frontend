@@ -1,12 +1,14 @@
-.order-details {
-  margin-left: 30%;
-  display: inline-flex;
+.status-label{
+  margin-top: 5px;
+  display: block;
+  font-weight: bolder;
+  font-size: 15px;
+  text-align: center;
+  font-palette: light;
 }
 
-
-.order-status {
-  display: inline-flex;
-  margin-left: 10px;
+.done-text{
+  text-align: center;
 }
 
 .details-label {
@@ -19,11 +21,8 @@
   font-weight: lighter;
 }
 
-.status-step {
-
-}
-
 .my-form-sign-in {
+  font-weight: bold;
   padding: -10px;
   margin-bottom: -30px;
   margin-top: -10px;

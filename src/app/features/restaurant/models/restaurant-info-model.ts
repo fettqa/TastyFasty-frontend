@@ -4,8 +4,8 @@ export interface RestaurantInfo {
   tags: string;
   name: string;
   rating: number;
-  open_time: number;
-  close_time: number;
+  openTime: number;
+  closeTime: number;
   address: Address;
   img: number[];
 }

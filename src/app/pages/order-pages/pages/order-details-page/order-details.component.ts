@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Order} from '../../../../features/orders/models/order-model';
 import {Restaurant} from '../../../../features/restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
 import {Breakfast} from '../../../../features/breakfast/models/breakfast-model';
@@ -11,6 +10,7 @@ import {RestaurantService} from '../../../../features/restaurant/services/restau
 import {BreakfastService} from '../../../../features/breakfast/services/breakfast.service';
 import {UserService} from '../../../../shared/services/user.service';
 import {OrdersService} from '../../../../features/orders/service/orders.service';
+import {Order} from '../../../../shared/models/order-model';
 
 
 interface CreateForm {

@@ -10,21 +10,23 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
   declarations: [RestaurantCardComponent],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    RouterModule,
-    MatButtonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatStepperModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        RouterModule,
+        MatButtonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatStepperModule,
+        MatDividerModule
+    ],
   exports: [RestaurantCardComponent]
 })
 export class RestaurantModule { }
