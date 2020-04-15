@@ -1,14 +1,27 @@
-<div class="basket-item-card" *ngFor="let basketItem of basketItems">
-  <app-basket-item-card
-    [basketItem]="basketItem"
-    (onChangeBasketItemStateEmitter)="onChangeBasketItemState($event)"
-    (onRemoveBasketItemEmitter)="onRemoveBasketItem($event)"
-  ></app-basket-item-card>
-</div>
-<div>
-  <app-order-info
-    [itemsToOrder]="basketItems"
-    [basketPrice]="basketPrice"
-    [orderPrice]="orderPrice"
-  ></app-order-info>
-</div>
+<div *ngIf="basketId; then set else unset"></div>
+
+<ng-template #set>
+  <div class="basket-item-card" *ngFor="let basketItem of basketItems">
+    <app-basket-item-card
+      [basketItem]="basketItem"
+      (onChangeBasketItemStateEmitter)="onChangeBasketItemState($event)"
+      (onRemoveBasketItemEmitter)="onRemoveBasketItem($event)"
+    ></app-basket-item-card>
+  </div>
+  <div>
+    <app-order-info
+      [itemsToOrder]="basketItems"
+      [basketPrice]="basketPrice"
+      [orderPrice]="orderPrice"
+      [userId]="userId"
+      [numOfPersons]="numOfPersons"
+    ></app-order-info>
+  </div>
+</ng-template>
+
+<ng-template #unset>
+  <div class="empty-basket-message">
+    Add something to basket!
+  </div>
+</ng-template>
+

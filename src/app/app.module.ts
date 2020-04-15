@@ -19,9 +19,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatIconModule} from '@angular/material/icon';
 import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
-import {BasketPageComponent} from './pages/basket-pages/pages/basket-page/basket-page.component';
-import {RegistrationPageComponent} from './pages/user-pages/pages/registration-page/registration-page.component';
 import {PermissionsModule} from './features/permissions/permissions.module';
+
 
 @NgModule({
   declarations: [

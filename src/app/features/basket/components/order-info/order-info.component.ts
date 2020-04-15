@@ -1,12 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Breakfast} from "../../../breakfast/models/breakfast-model";
 import {OrderService} from "../../services/order.service";
 import {OrderFillingService} from "../../services/order-filling.service";
-import {ActivatedRoute} from "@angular/router";
-import {Order} from "../../models/order-model";
 import {Status} from "../../models/status";
 import {BasketItem} from "../../models/basket-item-model";
 import {OrderedBreakfast} from "../../models/ordered-breakfast-model";
+import {Order} from "../../../../shared/models/order-model";
 
 @Component({
   selector: 'app-order-info',
@@ -18,49 +16,74 @@ export class OrderInfoComponent implements OnInit {
   @Input() itemsToOrder!: BasketItem[];
   @Input() basketPrice!: number;
   @Input() orderPrice!: number;
-
-  numOfPersons: number = 0;
+  @Input() userId!: number;
+  @Input() numOfPersons: number;
 
   constructor(
     private orderService: OrderService,
-    private orderFillingService: OrderFillingService,
-    private route: ActivatedRoute
-  ) { }
+    private orderFillingService: OrderFillingService
+  ) {
+  }
 
   ngOnInit(): void {
 
   }
 
   handleMakeOrderButton() {
-    this.route.paramMap.subscribe(params => {
-      const userId = Number(params.get('userId'));
 
+      let ordersByRestaurants: Map<number, BasketItem[]> = this.sortBasketItemsByRests();
 
-      const orderToCreate: Order = {
-        orderInfo: {
-          name: "order",
-          price: this.orderPrice
-        },
-        status: Status.STARTED_MAKING,
-        customerID: userId
-      };
-      this.orderService.createBasket(userId, orderToCreate).subscribe(createdOrder => {
-        const orderId = createdOrder.orderID;
-        for (let item of this.itemsToOrder) {
-          const newOrderItem: OrderedBreakfast = {
-            orderID: orderId,
-            breakfastID: item.breakfastID
-          };
-          this.orderFillingService.addToOrder(orderId, newOrderItem).subscribe();
+      for (let order of ordersByRestaurants.entries()) {
+
+        const orderToCreate: Order = {
+          orderInfo: {
+            name: "order",
+            tag: "",
+            price: this.orderPrice
+          },
+          status: Status.STARTED_MAKING,
+          restaurantID: order[0],
+          customerID: this.userId,
+          deliverymanID: undefined
+        };
+
+        this.orderService.createOrder(this.userId, orderToCreate).subscribe(createdOrder => {
+          for (let item of order[1]) {
+            for (let i = 0; i < item.numberOfItems; i++) {
+
+              const newOrderItem: OrderedBreakfast = {
+                orderID: createdOrder.id,
+                breakfastID: item.breakfast.id
+              };
+
+              this.orderFillingService.addToOrder(createdOrder.id, newOrderItem).subscribe(result => {
+                //this.itemsToOrder.splice(this.itemsToOrder.indexOf(item), 1); // todo
+              });
+            }
+          }
+        })
+      }
+  }
+
+  sortBasketItemsByRests(): Map<number, BasketItem[]> {
+    let res: Map<number, BasketItem[]> = new Map<number, BasketItem[]>();
+    for (const item of this.itemsToOrder) {
+      if (item.readyToOrder) {
+        if (res.has(item.breakfast.restaurantId)) {
+          res.get(item.breakfast.restaurantId).push(item);
+        } else {
+          res.set(item.breakfast.restaurantId, [item])
         }
-      })
+      }
+    }
+    return res;
+  }
 
+  handleRemoveAllFromBasket() {
 
-    });
   }
 
   handleNumOfPersons(num: number) {
     this.numOfPersons = num;
   }
-
 }

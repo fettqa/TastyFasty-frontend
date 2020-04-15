@@ -15,11 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/restaurant-pages/restaurant-pages.module').then(m => m.RestaurantPagesModule)
   },
   {
-    path: 'basket',
-    loadChildren: () => import('./pages/basket-pages/basket-pages.module').then(m => m.BasketPagesModule)
-  },
-  {
-    path: 'account/:userId',
+    path: 'account',
     loadChildren: () => import('./pages/account-pages/account-pages.module').then(m => m.AccountPagesModule)
   },
   {

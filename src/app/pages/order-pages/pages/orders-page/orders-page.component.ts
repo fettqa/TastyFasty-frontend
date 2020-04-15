@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Order} from "../../../../features/orders/models/order-model";
 import {OrdersService} from "../../../../features/orders/service/orders.service";
+import {Order} from "../../../../shared/models/order-model";
 
 @Component({
   selector: 'app-order-page',
@@ -14,7 +14,7 @@ export class OrdersPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.ordersService.getOrders().subscribe(ordersList => {
-      this.orders = ordersList;
+      this.orders = ordersList.items;
     });
   }
 

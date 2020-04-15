@@ -1,9 +1,9 @@
 <div>
-  <a mat-icon-button (click)="handleMinus()">
+  <button mat-icon-button (click)="handleMinus()" [disabled]="disabled">
     <mat-icon>remove</mat-icon>
-  </a>
-  {{num}}
-  <a mat-icon-button (click)="handlePlus()">
+  </button>
+  {{value}}
+  <button mat-icon-button (click)="handlePlus()">
     <mat-icon>add</mat-icon>
-  </a>
+  </button>
 </div>

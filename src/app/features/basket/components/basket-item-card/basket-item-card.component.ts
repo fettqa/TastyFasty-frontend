@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Breakfast} from "../../../breakfast/models/breakfast-model";
 import {BasketItem} from "../../models/basket-item-model";
-import {BreakfastService} from "../../../breakfast/services/breakfast.service";
 
 @Component({
   selector: 'app-basket-item-card',
@@ -17,10 +16,10 @@ export class BasketItemCardComponent implements OnInit {
 
   breakfast: Breakfast;
 
-  constructor(private breakfastService: BreakfastService) {  }
+  constructor() {  }
 
   ngOnInit(): void {
-    this.breakfastService.getBreakfastById(this.basketItem.breakfastID).subscribe(breakfast => this.breakfast = breakfast);
+    this.breakfast = this.basketItem.breakfast;
   }
 
   handleRemoveFromBasket(): void {

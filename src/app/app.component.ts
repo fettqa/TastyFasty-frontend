@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {CurrentUserService} from './core/services/current-user.service';
 import {Role} from './core/models/current-user.model';
-import {map} from 'rxjs/operators';
-import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +14,7 @@ export class AppComponent {
   check: boolean;
 
   constructor(private dialogService: MatDialog,
-              private currentUser: CurrentUserService,
-              private authService: AuthService
+              private currentUser: CurrentUserService
   ) {
     this.check = true;
     const rolesArr = [Role.DELIVERY];
@@ -28,6 +25,4 @@ export class AppComponent {
         }
       });
   }
-
-
 }

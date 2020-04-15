@@ -1,11 +1,11 @@
 import {OrderInfo} from "./order-info-model";
-import {Status} from "./status";
+import {Status} from "../../features/basket/models/status";
 
 export interface Order {
-  orderID?: number;
+  id?: number;
   orderInfo: OrderInfo;
   status: Status;
-  restaurantID?: number;
+  restaurantID: number;
   customerID: number;
   deliverymanID?: number;
 }
