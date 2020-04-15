@@ -1,1 +1,157 @@
-<p>order-details works!</p>
+<div class="order-details">
+  <mat-list class="list-details" role="contentinfo">
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Restaurant:</mat-label>
+      {{restaurant.restaurantInfo.name}};
+      {{restaurant.restaurantInfo.address.city}},
+      {{restaurant.restaurantInfo.address.street}},
+      {{restaurant.restaurantInfo.address.building}},
+    </mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Customer:</mat-label>
+      {{customer.personalInfo.firstName}} {{customer.personalInfo.lastName}};
+      {{customer.personalInfo.address.city}},
+      {{customer.personalInfo.address.street}},
+      {{customer.personalInfo.address.building}}</mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Delivery Man:</mat-label>
+      {{deliveryMan.personalInfo.firstName}} {{deliveryMan.personalInfo.lastName}}
+    </mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Price:</mat-label>
+      {{order.orderInfo.price}}
+    </mat-list-item>
+  </mat-list>
+</div>
+
+
+<div class="order-status">
+  <mat-vertical-stepper class="my-stepper" [linear]="true" #stepper>
+    <mat-step class="status-step">
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.STARTED_MAKING | status}}</ng-template>
+        <div>Done
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.STARTED_MAKING);
+                  stepper.next();">
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.WAITING_FOR_DELIVERYMAN | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.WAITING_FOR_DELIVERYMAN);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.TO_RESTAURANT | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.TO_RESTAURANT);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.GET_THE_ORDER | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.GET_THE_ORDER);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.ON_THE_WAY_TO_CUSTOMER | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.ON_THE_WAY_TO_CUSTOMER);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.WAITING_FOR_CUSTOMER | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleClickChange();
+                  handleFormSubmit(Status.WAITING_FOR_CUSTOMER);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{Status.READY | status}}</ng-template>
+        <div>
+          <button mat-icon-button
+                  (click)="handleHoleFormSubmit();
+                  handleFormSubmit(Status.READY);
+                  stepper.next();">
+            Done
+            <mat-icon *ngIf="!isClicked" color="accent">check_circle_outline</mat-icon>
+            <mat-icon *ngIf="isClicked" color="accent">check_circle</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <!--<mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-button (click)="handleHoleFormSubmit()">Done</button>
+      </div>
+    </mat-step>-->
+  </mat-vertical-stepper>
+</div>

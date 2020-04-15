@@ -1,5 +1,6 @@
 import {OrderStatus} from "../../../core/models/current-order.model";
 import {OrderInfo} from "../../basket/models/order-info-model";
+import {Status} from '../../basket/models/status';
 
 export interface Order {
   id: number;
@@ -7,7 +8,7 @@ export interface Order {
   customerID: number;
   deliverymanID: number;
   orderInfo: OrderInfo;
-  status: OrderStatus;
+  status: Status;
 }
 //
 // export interface OrderBreakfasts {
