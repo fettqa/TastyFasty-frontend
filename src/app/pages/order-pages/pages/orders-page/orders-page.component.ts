@@ -10,7 +10,6 @@ import {OrderInfo} from '../../../../shared/models/order-info-model';
 export class OrdersPageComponent implements OnInit {
 
   orders?: Order[];
-  orderInfos?: OrderInfo[];
 
   constructor(private ordersService: OrdersService) { }
 
@@ -19,8 +18,5 @@ export class OrdersPageComponent implements OnInit {
       this.orders = ordersList;
       }
     );
-    this.ordersService.getOrdersInfo().subscribe(ordersInfo => {
-      this.orderInfos = ordersInfo.items;
-    });
   }
 }
