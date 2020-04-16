@@ -13,10 +13,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from "@angular/material/grid-list";
+import { UserOrdersPageComponent } from './pages/user-orders-page/user-orders-page.component';
+import {UserOrderModule} from "../../features/user-order/user-order.module";
 
 
 @NgModule({
-  declarations: [AccountPageComponent, BasketPageComponent, EditAccountPageComponent],
+  declarations: [AccountPageComponent, BasketPageComponent, EditAccountPageComponent, UserOrdersPageComponent],
   imports: [
     CommonModule,
     AccountPagesRoutingModule,
@@ -28,7 +31,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatGridListModule,
+    UserOrderModule
   ]
 })
 export class AccountPagesModule {}

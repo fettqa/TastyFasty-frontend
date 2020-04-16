@@ -1,4 +1,11 @@
 .user-card {
-  margin: 10px auto 10px auto;
-  max-width: 400px;
+  margin: 20px auto 10px auto;
+  max-width: 390px;
+  box-shadow: 0 0 10px 10px lightgray;
+}
+.account-card-img {
+  margin: 1px;
+  border-radius: 7px;
+  max-width: 350px;
+  max-height: 350px;
 }

@@ -15,6 +15,8 @@ interface CreateSearchForm {
 })
 export class RestaurantPageComponent implements OnInit {
 
+  cols: number;
+
   restaurants?: Restaurant[];
   private refresh$ = new ReplaySubject<void>(1);
 
@@ -26,16 +28,21 @@ export class RestaurantPageComponent implements OnInit {
     this.restaurantService.getRestaurants().subscribe(restaurantList => {
       this.restaurants = restaurantList;
     });
+    this.onResize();
   }
 
-  handleFirstFormSubmit(value: CreateSearchForm) {
+  handleSearchForm(value: CreateSearchForm) {
     this.restaurantService.getRestaurantsBySearch(value.search).subscribe(restaurantList => {
       this.restaurants = restaurantList;
     });
-    this.refreshPersons();
+    this.refreshRestaurants();
   }
 
-  refreshPersons() {
+  refreshRestaurants() {
     this.refresh$.next();
+  }
+
+  onResize() {
+    this.cols = window.innerWidth / 400;
   }
 }

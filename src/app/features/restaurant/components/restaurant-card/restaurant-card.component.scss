@@ -1,17 +1,11 @@
 .restaurant-card {
   margin: 10px auto 10px auto;
-  max-width: 300px;
-  max-height: 400px;
+  max-width: 390px;
+  box-shadow: 0 0 10px 10px lightgray;
 }
-
 .img-card{
+  margin: 1px;
+  border-radius: 7px;
   max-width: 300px;
-  max-height: 250px;
-}
-
-.restaurant-card-info {
-  font-weight: bolder;
-}
-
-.star {
+  max-height: 300px;
 }

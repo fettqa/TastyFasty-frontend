@@ -11,6 +11,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class BreakfastPageComponent implements OnInit {
 
+  cols: number;
+
   breakfasts?: Breakfast[];
 
   constructor(private breakfastService: BreakfastService, private route: ActivatedRoute) { }
@@ -20,6 +22,11 @@ export class BreakfastPageComponent implements OnInit {
       this.breakfastService.getBreakfasts(Number(params.get('restaurantId'))).subscribe(breakfastList => {
         this.breakfasts = breakfastList;
       })
-    })
+    });
+    this.onResize();
+  }
+
+  onResize() {
+    this.cols = window.innerWidth / 400;
   }
 }

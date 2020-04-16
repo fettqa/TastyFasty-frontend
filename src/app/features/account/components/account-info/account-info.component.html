@@ -1,7 +1,7 @@
 <mat-card class="user-card">
   <mat-card-title> {{user.personalInfo.firstName + " " + user.personalInfo.lastName}}</mat-card-title>
   <mat-card-subtitle> {{user.username}} </mat-card-subtitle>
-  <img mat-card-image src="{{toBase64(user.personalInfo.img)}}" alt="{{user.personalInfo.img}}">
+  <img class="account-card-img" mat-card-image src="{{toBase64(user.personalInfo.img)}}" alt="{{user.personalInfo.img}}">
   <mat-card-content>
     <div>
       Address: {{user.personalInfo.address.city + " " +
@@ -10,11 +10,14 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-stroked-button color="primary" routerLink="edit/account">
-      <mat-icon>create</mat-icon> Edit
-    </a>
-    <a mat-stroked-button routerLink="basket">
+    <a mat-stroked-button color="primary" routerLink="basket">
       <mat-icon>shopping_cart</mat-icon> Basket
+    </a>
+    <a mat-stroked-button color="primary" routerLink="orders">
+      <mat-icon>account_balance_wallet</mat-icon> Orders
+    </a>
+    <a mat-stroked-button color="accent" routerLink="edit/account">
+      <mat-icon>create</mat-icon> Edit
     </a>
   </mat-card-actions>
   <mat-card-footer></mat-card-footer>

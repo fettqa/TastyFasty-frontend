@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {OrderFillingService} from "../../services/order-filling.service";
 import {Status} from "../../models/status";
@@ -18,6 +18,8 @@ export class OrderInfoComponent implements OnInit {
   @Input() orderPrice!: number;
   @Input() userId!: number;
   @Input() numOfPersons: number;
+
+  @Output() onRemoveItemToOrderEmitter = new EventEmitter<BasketItem>();
 
   constructor(
     private orderService: OrderService,
@@ -57,7 +59,7 @@ export class OrderInfoComponent implements OnInit {
               };
 
               this.orderFillingService.addToOrder(createdOrder.id, newOrderItem).subscribe(result => {
-                //this.itemsToOrder.splice(this.itemsToOrder.indexOf(item), 1); // todo
+                this.handleRemoveItem(item);
               });
             }
           }
@@ -80,7 +82,14 @@ export class OrderInfoComponent implements OnInit {
   }
 
   handleRemoveAllFromBasket() {
+    for (let item of this.itemsToOrder) {
+      this.handleRemoveItem(item);
+    }
+  }
 
+  handleRemoveItem(item: BasketItem) {
+    this.onRemoveItemToOrderEmitter.emit(item);
+    //this.itemsToOrder.splice(this.itemsToOrder.indexOf(item), 1);
   }
 
   handleNumOfPersons(num: number) {

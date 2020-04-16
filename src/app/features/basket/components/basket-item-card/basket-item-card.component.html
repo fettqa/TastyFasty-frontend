@@ -1,7 +1,7 @@
 <mat-card class="basket-item-card" *ngIf="breakfast">
   <mat-card-title> {{breakfast.name}}</mat-card-title>
   <mat-card-subtitle> {{breakfast.tag}} </mat-card-subtitle>
-  <img mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
+  <img class="basket-card-img" mat-card-image src="{{toBase64(breakfast.img)}}" alt="{{breakfast.img}}">
   <mat-card-content>
     <div>Price: {{breakfast.price}}</div>
     <div>Choose number of portions:

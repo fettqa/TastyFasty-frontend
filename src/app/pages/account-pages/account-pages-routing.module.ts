@@ -5,6 +5,7 @@ import {BasketPageComponent} from './pages/basket-page/basket-page.component';
 import {BasketPageGuard} from './guards/basket-page.guard';
 import {EditAccountPageComponent} from '../../features/account/components/edit-account-page/edit-account-page.component';
 import {AccountPageGuard} from './guards/account-page.guard';
+import {UserOrdersPageComponent} from "./pages/user-orders-page/user-orders-page.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
         canActivate: [BasketPageGuard],
         runGuardsAndResolvers: 'always',
         component: BasketPageComponent
+      },
+      {
+        path: 'orders',
+        component: UserOrdersPageComponent
       },
       {
         path: 'edit/account',

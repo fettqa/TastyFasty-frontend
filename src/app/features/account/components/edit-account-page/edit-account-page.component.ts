@@ -5,6 +5,8 @@ import {FormBuilder} from '@angular/forms';
 import {Address} from '../../../../shared/models/address-model';
 import {UserService} from '../../../../shared/services/user.service';
 import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {CurrentUserService} from '../../../../core/services/current-user.service';
 
 interface CreateFirstForm {
   password?: string;
@@ -44,18 +46,17 @@ export class EditAccountPageComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private userService: UserService,
-              private route: ActivatedRoute) {
+              private currentUserService: CurrentUserService) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      params => {
-        const userId = Number(params.get('userId'));
-        this.userService.getUserById(userId).subscribe(user => {
-          this.user = user;
+    this.currentUserService.user$.pipe(map(user => {
+      if (user.authenticated) {
+        this.userService.getUserById(user.info.id).subscribe(user1 => {
+          this.user = user1;
         });
       }
-    );
+    })).subscribe();
   }
 
   handleFirstFormSubmit(value: CreateFirstForm) {
