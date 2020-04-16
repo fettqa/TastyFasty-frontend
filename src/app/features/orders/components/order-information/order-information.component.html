@@ -1,0 +1,29 @@
+<mat-tab-group mat-stretch-tabs dynamicHeight *ngIf="selectedOrder != undefined" >
+  <mat-tab label="{{selectedOrder.orderInfo.name}}">
+    <div class="example-small-box mat-elevation-z4">
+      <div> {{selectedOrder.orderInfo.name}}</div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Details">
+    <div class="example-large-box mat-elevation-z4">
+      Details
+    </div>
+  </mat-tab>
+  <mat-tab disabled>
+    <ng-template mat-tab-label>
+      <button mat-raised-button color="primary" style="width: 100%" (click)="openDialog()" >
+        Take this order
+      </button>
+    </ng-template>
+  </mat-tab>
+  <mat-tab disabled>
+    <ng-template mat-tab-label>
+      <button mat-raised-button color="warn" style="width: 100%" (click)="closeTab()" >
+        Close tab
+      </button>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+<div class="example-button-container">
+
+</div>

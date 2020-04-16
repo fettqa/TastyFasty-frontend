@@ -1,0 +1,22 @@
+<form #form="ngForm" (ngSubmit)="handleFormSubmit()" style="align-content: stretch">
+  <div  >
+    <mat-dialog-content>
+      Do you want to take this order?
+    </mat-dialog-content>
+  </div>
+  <div class="about">
+    <mat-dialog-actions>
+      <button type="submit" mat-raised-button mat-button color="primary">
+        Yes
+      </button>
+    </mat-dialog-actions>
+  </div>
+  <div class="about">
+    <mat-dialog-actions >
+      <button mat-raised-button matDialogClose mat-button color="warn">
+        No
+      </button>
+    </mat-dialog-actions>
+  </div>
+
+</form>

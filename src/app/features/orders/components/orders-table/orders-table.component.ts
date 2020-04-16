@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Order} from "../../../../shared/models/order-model";
+import {Component,EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Order} from '../../../../shared/models/order-model';
 
 
 @Component({
@@ -8,14 +8,25 @@ import {Order} from "../../../../shared/models/order-model";
   styleUrls: ['./orders-table.component.scss']
 })
 export class OrdersTableComponent implements OnInit {
-  columns: string[] = [ 'name', 'status' , 'tag'];
+  columns = [ 'name', 'status' , 'tag'];
 
   @Input()
   orders!: Order[];
 
+  @Output()
+  orderClick = new EventEmitter<Order>();
+
+
+
+  selectedOrder?: Order;
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  handleOrderClick() {
+    this.orderClick.emit(this.selectedOrder);
+  }
 }

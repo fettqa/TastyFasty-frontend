@@ -10,6 +10,7 @@ import {OrderInfo} from '../../../../shared/models/order-info-model';
 export class OrdersPageComponent implements OnInit {
 
   orders?: Order[];
+  selectedOrder?: Order;
 
   constructor(private ordersService: OrdersService) { }
 
@@ -18,5 +19,9 @@ export class OrdersPageComponent implements OnInit {
       this.orders = ordersList;
       }
     );
+  }
+
+  handleOrderClick($event: Order) {
+    this.selectedOrder = $event;
   }
 }

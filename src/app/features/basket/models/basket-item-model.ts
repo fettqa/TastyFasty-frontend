@@ -1,4 +1,4 @@
-import {Breakfast} from "../../breakfast/models/breakfast-model";
+import {Breakfast} from '../../breakfast/models/breakfast-model';
 
 export interface BasketItem {
   basketItemID?: number;
