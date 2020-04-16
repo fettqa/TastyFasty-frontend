@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { OrderPagesRoutingModule } from './order-pages-routing.module';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import {OrdersModule} from '../../features/orders/orders.module';
-import { OrderDetailsComponent } from './pages/order-details-page/order-details.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,6 +14,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { CurrentOrdersPageComponent } from './pages/current-orders-page/current-orders-page.component';
+import {OrderDetailsComponent} from '../../features/orders/components/order-details/order-details.component';
 
 
 @NgModule({
