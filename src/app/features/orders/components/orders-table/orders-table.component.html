@@ -1,3 +1,4 @@
+
 <table mat-table [dataSource]="orders" class="orders-table">
 
     <ng-container matColumnDef="name">
@@ -21,7 +22,11 @@
 
 
     <tr *matHeaderRowDef="columns" mat-header-row></tr>
-    <tr *matRowDef="let row; columns: columns" mat-row></tr>
+    <tr *matRowDef="let row; columns: columns"
+        mat-row (click)="selectedOrder = row; handleOrderClick()"
+        [class.selected-order]="selectedOrder?.id == row.id"></tr>
 </table>
+
+
 
 

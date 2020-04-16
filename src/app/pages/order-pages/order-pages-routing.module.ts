@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {OrdersPageComponent} from './pages/orders-page/orders-page.component';
-import {OrderDetailsComponent} from './pages/order-details-page/order-details.component';
+import {OrderDetailsComponent} from '../../features/orders/components/order-details/order-details.component';
 import {OrderPageGuard} from './guards/order-page.guard';
 
 

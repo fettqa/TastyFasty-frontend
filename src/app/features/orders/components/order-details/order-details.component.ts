@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Restaurant} from '../../../../features/restaurant/models/restaurant-model';
+import {Restaurant} from '../../../restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
-import {Breakfast} from '../../../../features/breakfast/models/breakfast-model';
+import {Breakfast} from '../../../breakfast/models/breakfast-model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Status} from '../../../../features/basket/models/status';
+import {Status} from '../../../basket/models/status';
 import {Role} from '../../../../core/models/current-user.model';
-import {RestaurantService} from '../../../../features/restaurant/services/restaurant.service';
-import {BreakfastService} from '../../../../features/breakfast/services/breakfast.service';
+import {RestaurantService} from '../../../restaurant/services/restaurant.service';
+import {BreakfastService} from '../../../breakfast/services/breakfast.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {OrdersService} from '../../../../features/orders/service/orders.service';
+import {OrdersService} from '../../service/orders.service';
 import {Order} from '../../../../shared/models/order-model';
 
 

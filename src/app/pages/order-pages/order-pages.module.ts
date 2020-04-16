@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OrderPagesRoutingModule } from './order-pages-routing.module';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import {OrdersModule} from "../../features/orders/orders.module";
-import { OrderDetailsComponent } from './pages/order-details-page/order-details.component';
+import { OrderDetailsComponent } from '../../features/orders/components/order-details/order-details.component';
 import { OrderStatusPageComponent } from './pages/order-status-page/order-status-page.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -19,6 +19,9 @@ import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [OrdersPageComponent, OrderDetailsComponent],
+  exports: [
+    OrderDetailsComponent
+  ],
   imports: [
     CommonModule,
     OrderPagesRoutingModule,
@@ -29,6 +32,7 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     FormsModule,
     MatListModule,
-    MatFormFieldModule,]
+    MatFormFieldModule,
+  ]
 })
 export class OrderPagesModule { }
