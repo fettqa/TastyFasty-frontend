@@ -9,3 +9,10 @@ export interface Order {
   customerID: number;
   deliverymanID?: number;
 }
+
+/*
+export interface OrderInfo {
+  name: string;
+  tag?: string;
+  price: number;
+}*/

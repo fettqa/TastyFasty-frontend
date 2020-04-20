@@ -20,6 +20,8 @@ export class LoggingInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(response => {
         if (response.type == HttpEventType.Response) {
+          // console.log('request: ' + request.url);
+          // console.log('response: ' + response.url);
       }
       })
     );

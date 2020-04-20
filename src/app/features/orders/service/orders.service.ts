@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
 import {Order} from "../../../shared/models/order-model";
 import {ListValue} from "../../../shared/models/api-model";
+import {Breakfast} from "../../breakfast/models/breakfast-model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class OrdersService {
   getOrderById(id: number): Observable<Order> {
     return this.http.get<Order>(`http://localhost:8080/api/orders/${id}`);
   }
+
 
 
 }
