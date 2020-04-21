@@ -1,13 +1,13 @@
 
 <table mat-table [dataSource]="orders" class="orders-table">
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="search">
+  </mat-form-field>
 
     <ng-container matColumnDef="name">
       <th *matHeaderCellDef mat-header-cell>Name</th>
-      <td *matCellDef="let row">
-        <a [routerLink]="row.id">
-          {{row.orderInfo.name}}
-        </a>
-      </td>
+      <td *matCellDef="let row">{{row.orderInfo.name}}</td>
     </ng-container>
 
     <ng-container matColumnDef="status">

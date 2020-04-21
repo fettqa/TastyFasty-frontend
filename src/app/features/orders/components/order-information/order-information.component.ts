@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Order} from '../../../../shared/models/order-model';
 import {MatDialog} from '@angular/material/dialog';
 import {OrderConfirmDialogComponent} from '../order-confirm-dialog/order-confirm-dialog.component';
@@ -23,6 +23,9 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   selectedOrderCustomer?: User;
   selectedOrderBreakfasts?: Breakfast[];
 
+  @Output()
+  submitOrder = new EventEmitter();
+
 
   constructor(private dialog: MatDialog,
               private restaurantService: RestaurantService,
@@ -31,17 +34,17 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('im in');
+    console.log('order-information init');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('changed to:');
+    console.log('order-information: changed to:');
     if ('selectedOrder' in changes) {
       if (changes.selectedOrder.currentValue === undefined) {
         return;
       } else {
-        // console.log('selected order restaurantID:' + this.selectedOrder.restaurantID);
-        // console.log('selected order customerID:' + this.selectedOrder.customerID);
+        console.log('order-information: selected order restaurantID:' + this.selectedOrder.restaurantID);
+        console.log('order-information: selected order customerID:' + this.selectedOrder.customerID);
         this.findRestaurantById(this.selectedOrder.restaurantID);
         this.findCustomerById(this.selectedOrder.customerID);
         this.findBreakfastsById(this.selectedOrder.id);
@@ -54,6 +57,10 @@ export class OrderInformationComponent implements OnInit, OnChanges {
       data: {
         order: this.selectedOrder
       }
+    });
+    dialog.afterClosed().subscribe(() => {
+      this.selectedOrder = undefined;
+      this.submitOrder.emit();
     });
   }
 

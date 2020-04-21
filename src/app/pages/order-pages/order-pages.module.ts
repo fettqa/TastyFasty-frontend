@@ -29,6 +29,6 @@ import {OrderDetailsComponent} from '../../features/orders/components/order-deta
     MatIconModule,
     FormsModule,
     MatListModule,
-    MatFormFieldModule,]
+    MatFormFieldModule]
 })
 export class OrderPagesModule { }
