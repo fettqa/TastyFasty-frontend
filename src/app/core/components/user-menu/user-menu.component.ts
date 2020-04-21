@@ -22,15 +22,12 @@ export class UserMenuComponent implements OnInit {
     private router: Router,
     private dialogService: MatDialog
   ) {
-
   }
 
   ngOnInit(): void {  }
 
   handleLogoutClick() {
-    this.authService.logout().pipe(
-      switchMap(() => this.authService.loadProfile())
-    ).subscribe(user => {
+    this.authService.logout().subscribe(user => {
       this.currentUserService.user$.next(user);
       this.router.navigate([''], {
         relativeTo: this.activeRoute

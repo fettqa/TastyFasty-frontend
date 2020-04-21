@@ -1,29 +1,27 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
 import {CurrentUser} from '../models/current-user.model';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {LoginData} from '../models/auth.model';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  cu: Observable<CurrentUser>;
-
   constructor(private http: HttpClient) {
   }
 
+
   loadProfile(): Observable<CurrentUser> {
-    if (this.cu === undefined) {
-      return this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
-    } else {
-      return this.cu;
+    if (localStorage.getItem('currentUser') == null) {
+      localStorage.setItem('currentUser', '{"authenticated":false}');
     }
+    return of<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')) as CurrentUser);
   }
 
 
-  login(data: LoginData): Observable<void> {
+  login(data: LoginData): Observable<CurrentUser> {
     const params = new HttpParams({
       fromObject: {
         username: data.username,
@@ -34,19 +32,13 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
-
-    this.cu = this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
-      headers: headers
-    });
-
-    return this.http.post<void>('http://localhost:8080/auth/login', params.toString(), {
-      headers: headers
+    return this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
+      headers
     });
   }
 
-  logout(): Observable<void> {
-    this.cu = this.http.post<CurrentUser>('http://localhost:8080/auth/logout', null);
-
-    return this.http.post<void>('http://localhost:8080/auth/logout', null);
+  logout(): Observable<CurrentUser> {
+    localStorage.setItem('currentUser', '{"authenticated":false}');
+    return of<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')) as CurrentUser);
   }
 }

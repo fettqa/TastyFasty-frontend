@@ -4,6 +4,10 @@ import {User} from '../../models/user-model';
 import {UserService} from '../../services/user.service';
 import {Role} from '../../../../core/models/current-user.model';
 import {Address} from '../../../../shared/models/address-model';
+import {switchMap} from 'rxjs/operators';
+import {AuthService} from '../../../../core/services/auth.service';
+import {CurrentUserService} from '../../../../core/services/current-user.service';
+import {Router} from '@angular/router';
 
 
 interface CreateFirstForm {
@@ -43,7 +47,11 @@ export class RegistrationPageComponent implements OnInit {
   isLinear = true;
   Role = Role;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private userService: UserService,
+              private router: Router,
+              private currentUserService: CurrentUserService) {
   }
 
   ngOnInit() {
@@ -88,12 +96,18 @@ export class RegistrationPageComponent implements OnInit {
       }
     };
     console.log(userToPost);
-    console.log(this.username, this.password);
     this.userService.createUser(userToPost).subscribe(
       user => {
-        console.log(user);
+        this.authService.login({
+          username: this.username,
+          password: this.password
+        }).subscribe(profile => {
+          this.currentUserService.user$.next(profile);
+          this.router.navigateByUrl('/');
+        });
       }
     );
+
   }
 }
 

@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   handleLoginSubmit(value: LoginForm) {
-    this.authService.login({
+ /*   this.authService.login({
       username: value.username,
       password: value.password
     }).pipe(
@@ -46,13 +46,25 @@ export class LoginPageComponent implements OnInit {
       error => {
         this.form.control.setErrors({
           server: true
-        });
+        });*/
      /*   this.form.controls.username.setErrors({
           server: true
         });
         this.form.controls.password.setErrors({
           server: true
         });*/
+
+    this.authService.login({
+      username: value.username,
+      password: value.password
+    }).subscribe(profile => {
+        this.currentUserService.user$.next(profile);
+        this.dialog.closeAll();
+      },
+      error => {
+        this.form.control.setErrors({
+          server: true
+        });
 
       }
     );
