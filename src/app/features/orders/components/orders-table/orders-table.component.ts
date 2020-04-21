@@ -27,6 +27,7 @@ export class OrdersTableComponent implements OnInit {
   }
 
   handleOrderClick() {
+    // console.log('handle order click emit in table component');
     this.orderClick.emit(this.selectedOrder);
   }
 }

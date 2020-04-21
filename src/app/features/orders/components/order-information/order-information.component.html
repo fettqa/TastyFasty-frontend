@@ -1,12 +1,60 @@
-<mat-tab-group mat-stretch-tabs dynamicHeight *ngIf="selectedOrder != undefined" >
+<mat-tab-group mat-stretch-tabs dynamicHeight
+               *ngIf="selectedOrder != undefined
+               && selectedOrderRestaurant != undefined
+               && selectedOrderCustomer != undefined" >
   <mat-tab label="{{selectedOrder.orderInfo.name}}">
     <div class="example-small-box mat-elevation-z4">
-      <div> {{selectedOrder.orderInfo.name}}</div>
+      <mat-list></mat-list>
+      <div> </div>
     </div>
+    <mat-list-item>Restaurant: {{selectedOrderRestaurant.restaurantInfo.name }}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Restaurant address:
+      City:{{selectedOrderRestaurant.restaurantInfo.address.city}},
+      Street: {{selectedOrderRestaurant.restaurantInfo.address.street}},
+      Building: {{selectedOrderRestaurant.restaurantInfo.address.building}}
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Restaurant working time {{selectedOrderRestaurant.restaurantInfo.openTime}} - {{selectedOrderRestaurant.restaurantInfo.closeTime}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Customer address:
+      City:{{selectedOrderCustomer.personalInfo.address.city}},
+      Street: {{selectedOrderCustomer.personalInfo.address.street}},
+      Building: {{selectedOrderCustomer.personalInfo.address.building}}
+    </mat-list-item>
+
   </mat-tab>
   <mat-tab label="Details">
     <div class="example-large-box mat-elevation-z4">
-      Details
+      <mat-list>
+        <div mat-subheader>From:</div>
+        <div mat-subheader>Address:
+          {{selectedOrderRestaurant.restaurantInfo.address.city}},
+          {{selectedOrderRestaurant.restaurantInfo.address.street}},
+          {{selectedOrderRestaurant.restaurantInfo.address.building}}
+        </div>
+        <mat-divider></mat-divider>
+        <div mat-subheader>To:</div>
+        <div mat-subheader>Address:
+          {{selectedOrderCustomer.personalInfo.address.city}},
+          {{selectedOrderCustomer.personalInfo.address.street}},
+          {{selectedOrderCustomer.personalInfo.address.building}}
+        </div>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Customer full name:
+          {{selectedOrderCustomer.personalInfo.lastName}}&nbsp;
+          {{selectedOrderCustomer.personalInfo.firstName}}&nbsp;
+          {{selectedOrderCustomer.personalInfo.middleName}}</div>
+        <div mat-subheader>Phone:&nbsp;{{selectedOrderCustomer.personalInfo.phoneNumber}}</div>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Note: </div>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Ordered breakfasts</div>
+        <mat-list-item *ngFor="let breakfast of selectedOrderBreakfasts">
+          <mat-divider></mat-divider>
+          <div mat-line>Position: {{breakfast.name}}&nbsp;Price:&nbsp;{{breakfast.price}}</div>
+        </mat-list-item>
+      </mat-list>
     </div>
   </mat-tab>
   <mat-tab disabled>

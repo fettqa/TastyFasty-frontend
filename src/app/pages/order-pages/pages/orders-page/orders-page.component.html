@@ -1,4 +1,6 @@
 
 <p>IT WORKS!</p>
   <app-orders-table [orders]= "orders" (orderClick)="handleOrderClick($event)"></app-orders-table>
-  <app-order-information *ngIf="selectedOrder != undefined" [selectedOrder]="selectedOrder"></app-order-information>
+  <app-order-information *ngIf="selectedOrder != undefined"
+                         [selectedOrder]="selectedOrder"
+  ></app-order-information>
