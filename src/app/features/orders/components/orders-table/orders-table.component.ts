@@ -1,4 +1,4 @@
-import {Component,EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Order} from '../../../../shared/models/order-model';
 
 
@@ -18,7 +18,10 @@ export class OrdersTableComponent implements OnInit {
 
 
 
+
+
   selectedOrder?: Order;
+  search: string;
 
   constructor() { }
 
@@ -27,7 +30,7 @@ export class OrdersTableComponent implements OnInit {
   }
 
   handleOrderClick() {
-    // console.log('handle order click emit in table component');
+    console.log('orders-table: handle order click emit in table component');
     this.orderClick.emit(this.selectedOrder);
   }
 }

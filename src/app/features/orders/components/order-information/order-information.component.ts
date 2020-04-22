@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Order} from '../../../../shared/models/order-model';
 import {MatDialog} from '@angular/material/dialog';
 import {OrderConfirmDialogComponent} from '../order-confirm-dialog/order-confirm-dialog.component';
@@ -6,8 +6,11 @@ import {Restaurant} from '../../../restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
 import {RestaurantService} from '../../../restaurant/services/restaurant.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {Breakfast} from '../../../breakfast/models/breakfast-model';
-import {OrderService} from '../../../basket/services/order.service';
+import {Address} from "../../../../shared/models/address-model";
+import {AddressService} from "../../../address/service/address.service";
+import {Breakfast} from "../../../breakfast/models/breakfast-model";
+import {OrderService} from "../../../basket/services/order.service";
+import {Status} from "../../../basket/models/status";
 
 @Component({
   selector: 'app-order-information',
@@ -21,6 +24,13 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   selectedOrderCustomer?: User;
   selectedOrderBreakfasts?: Breakfast[];
 
+  @Output()
+  submitOrder = new EventEmitter();
+
+  @Output()
+  closeTabulation = new EventEmitter();
+  status = Status;
+
 
   constructor(private dialog: MatDialog,
               private restaurantService: RestaurantService,
@@ -29,17 +39,17 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('im in');
+    console.log('order-information init');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('changed to:');
+    console.log('order-information: changed to:');
     if ('selectedOrder' in changes) {
       if (changes.selectedOrder.currentValue === undefined) {
         return;
       } else {
-        // console.log('selected order restaurantID:' + this.selectedOrder.restaurantID);
-        // console.log('selected order customerID:' + this.selectedOrder.customerID);
+        console.log('order-information: selected order restaurantID:' + this.selectedOrder.restaurantID);
+        console.log('order-information: selected order customerID:' + this.selectedOrder.customerID);
         this.findRestaurantById(this.selectedOrder.restaurantID);
         this.findCustomerById(this.selectedOrder.customerID);
         this.findBreakfastsById(this.selectedOrder.id);
@@ -53,6 +63,10 @@ export class OrderInformationComponent implements OnInit, OnChanges {
         order: this.selectedOrder
       }
     });
+    dialog.afterClosed().subscribe(() => {
+      this.selectedOrder = undefined;
+      this.submitOrder.emit();
+    });
   }
 
   takeOrder() {
@@ -60,6 +74,7 @@ export class OrderInformationComponent implements OnInit, OnChanges {
 
   closeTab() {
     this.selectedOrder = undefined;
+    this.closeTabulation.emit();
   }
 
 

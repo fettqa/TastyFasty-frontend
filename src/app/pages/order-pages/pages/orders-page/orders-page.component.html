@@ -1,6 +1,4 @@
+<app-order-information *ngIf="selectedOrder != undefined"
+                       [selectedOrder]="selectedOrder" (submitOrder)="handleSubmitOrder($event)"></app-order-information>
+<app-orders-table [orders]= "orders$ | async" (orderClick)="handleOrderClick($event)" ></app-orders-table>
 
-<p>IT WORKS!</p>
-  <app-orders-table [orders]= "orders" (orderClick)="handleOrderClick($event)"></app-orders-table>
-  <app-order-information *ngIf="selectedOrder != undefined"
-                         [selectedOrder]="selectedOrder"
-  ></app-order-information>

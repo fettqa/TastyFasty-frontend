@@ -12,6 +12,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { OrderConfirmDialogComponent } from './components/order-confirm-dialog/order-confirm-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -26,7 +28,9 @@ import {MatListModule} from "@angular/material/list";
     MatButtonModule,
     MatDialogModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     OrdersTableComponent,
