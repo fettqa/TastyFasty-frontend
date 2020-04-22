@@ -32,8 +32,9 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
+
     return this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
-      headers
+      headers: headers
     });
   }
 

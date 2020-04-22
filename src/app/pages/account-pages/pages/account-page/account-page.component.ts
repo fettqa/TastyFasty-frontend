@@ -7,8 +7,7 @@ import {map} from "rxjs/operators";
 @Component({
   selector: 'app-account',
   templateUrl: './account-page.component.html',
-  styleUrls: ['./account-page.component.scss'],
-  providers: [UserService]
+  styleUrls: ['./account-page.component.scss']
 })
 export class AccountPageComponent implements OnInit {
 
@@ -17,9 +16,9 @@ export class AccountPageComponent implements OnInit {
   constructor(private userService: UserService, private currentUserService: CurrentUserService) {  }
 
   ngOnInit(): void {
-    this.currentUserService.user$.pipe(map(user => {
-      if (user.authenticated) {
-        this.userService.getUserById(user.info.id).subscribe(user => {
+    this.currentUserService.user$.pipe(map(currUser => {
+      if (currUser.authenticated) {
+        this.userService.getUserById(currUser.info.id).subscribe(user => {
           this.user = user;
         });
       }
