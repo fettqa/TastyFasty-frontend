@@ -42,6 +42,7 @@ export class OrderDetailsComponent implements OnInit {
     Status.ON_THE_WAY_TO_CUSTOMER,
     Status.WAITING_FOR_CUSTOMER,
     Status.READY];
+
   private refresh$ = new ReplaySubject<void>(1);
 
 

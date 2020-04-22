@@ -20,13 +20,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
 import {PermissionsModule} from './features/permissions/permissions.module';
-import { AddressComponent } from './features/address/components/address.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddressComponent,
   ],
   imports: [
     BrowserModule,

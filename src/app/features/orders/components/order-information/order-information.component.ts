@@ -6,10 +6,8 @@ import {Restaurant} from '../../../restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
 import {RestaurantService} from '../../../restaurant/services/restaurant.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {Address} from "../../../../shared/models/address-model";
-import {AddressService} from "../../../address/service/address.service";
-import {Breakfast} from "../../../breakfast/models/breakfast-model";
-import {OrderService} from "../../../basket/services/order.service";
+import {Breakfast} from '../../../breakfast/models/breakfast-model';
+import {OrderService} from '../../../basket/services/order.service';
 
 @Component({
   selector: 'app-order-information',
