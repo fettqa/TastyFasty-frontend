@@ -25,19 +25,14 @@ export class OrdersPageComponent implements OnInit {
   constructor(private ordersService: OrdersService) { }
 
   ngOnInit(): void {
-    console.log('orders-page: ' + 'getting orders...');
     this.orders$ = this.refresh$.pipe(
       switchMap(() => this.ordersService.getOrders()),
       map(list => list.filter(order => order.status == Status.WAITING_FOR_DELIVERYMAN))
     );
     this.refreshOrders();
-    //this.getOrders();
   }
 
   handleOrderClick($event: Order) {
-    console.log('orders-page: ' + 'order is selected:');
-    console.log('orders-page: restaurant id ' + $event.restaurantID);
-    console.log('orders-page: customer id' + $event.customerID);
     this.selectedOrder = $event;
   }
 

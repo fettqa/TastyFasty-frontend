@@ -6,8 +6,8 @@ import {CurrentUserService} from '../../../../core/services/current-user.service
 import {map} from 'rxjs/operators';
 import {UserService} from '../../../../shared/services/user.service';
 import {Status} from '../../../basket/models/status';
-import {OrdersService} from "../../service/orders.service";
-import {LoggedUser} from "../../../../core/models/current-user.model";
+import {OrdersService} from '../../service/orders.service';
+import {LoggedUser} from '../../../../core/models/current-user.model';
 
 @Component({
   selector: 'app-order-confirm-dialog',
@@ -17,35 +17,32 @@ import {LoggedUser} from "../../../../core/models/current-user.model";
 export class OrderConfirmDialogComponent implements OnInit {
 
   private user: LoggedUser;
+  private order: Order;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) private order: Order,
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
               private orderService: OrderService,
               private ordersService: OrdersService,
               private currentUserService: CurrentUserService,
               private userService: UserService,
-              private dialog: MatDialogRef<OrderConfirmDialogComponent>) { }
+              private dialog: MatDialogRef<OrderConfirmDialogComponent>) {
+  }
 
   ngOnInit(): void {
+    console.log(this.data.order);
+    this.order = this.data.order;
     this.currentUserService.user$.pipe(map(user => {
       if (user.authenticated) {
-          this.user = user;
-        }
-      })).subscribe();
-    console.log('confirm-dialog: current username is ' + this.user.info.username);
-    console.log('confirm-dialog: init end');
+        this.user = user;
+      }
+    })).subscribe();
   }
 
   handleFormSubmit() {
-    console.log('order-confirm-dialog: before deliveryId is ' + this.order.deliverymanID);
     this.order.deliverymanID = this.user.info.id;
-    console.log('order-confirm-dialog: after deliveryId is ' + this.order.deliverymanID);
-    console.log('confirm-dialog: Before status: ' + this.order.status);
-    this.order.status = Status.GET_THE_ORDER;
-    console.log('confirm-dialog: After status: ' + this.order.status);
-    this.orderService.updateOrderByOrderId(this.order.id, this.order);
+    this.order.status = Status.TO_RESTAURANT;
+    this.orderService.updateOrderByOrderId(this.order.id, this.order).subscribe();
     this.dialog.close();
-
   }
 
   close() {

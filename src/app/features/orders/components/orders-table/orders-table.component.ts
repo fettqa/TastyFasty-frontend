@@ -16,10 +16,6 @@ export class OrdersTableComponent implements OnInit {
   @Output()
   orderClick = new EventEmitter<Order>();
 
-
-
-
-
   selectedOrder?: Order;
   search: string;
 

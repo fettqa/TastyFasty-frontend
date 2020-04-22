@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {Order} from "../../../shared/models/order-model";
-import {ListValue} from "../../../shared/models/api-model";
-import {Breakfast} from "../../breakfast/models/breakfast-model";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Order} from '../../../shared/models/order-model';
+import {ListValue} from '../../../shared/models/api-model';
+import {Breakfast} from '../../breakfast/models/breakfast-model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,9 @@ export class OrdersService {
     return this.http.get<Order>(`http://localhost:8080/api/orders/${id}`);
   }
 
+  getOrdersByDeliveryManId(id: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`http://localhost:8080/api/orders/deliveryman?deliverymanId=` + id.toString());
+  }
 
 
 }

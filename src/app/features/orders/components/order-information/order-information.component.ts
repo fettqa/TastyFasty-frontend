@@ -6,11 +6,10 @@ import {Restaurant} from '../../../restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
 import {RestaurantService} from '../../../restaurant/services/restaurant.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {Address} from "../../../../shared/models/address-model";
-import {AddressService} from "../../../address/service/address.service";
-import {Breakfast} from "../../../breakfast/models/breakfast-model";
-import {OrderService} from "../../../basket/services/order.service";
-import {Status} from "../../../basket/models/status";
+import {Breakfast} from '../../../breakfast/models/breakfast-model';
+import {OrderService} from '../../../basket/services/order.service';
+import {Status} from '../../../basket/models/status';
+import {ReplaySubject} from 'rxjs';
 
 @Component({
   selector: 'app-order-information',
@@ -31,6 +30,8 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   closeTabulation = new EventEmitter();
   status = Status;
 
+  private refresh$ = new ReplaySubject<void>(1);
+
 
   constructor(private dialog: MatDialog,
               private restaurantService: RestaurantService,
@@ -39,17 +40,13 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('order-information init');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('order-information: changed to:');
     if ('selectedOrder' in changes) {
       if (changes.selectedOrder.currentValue === undefined) {
         return;
       } else {
-        console.log('order-information: selected order restaurantID:' + this.selectedOrder.restaurantID);
-        console.log('order-information: selected order customerID:' + this.selectedOrder.customerID);
         this.findRestaurantById(this.selectedOrder.restaurantID);
         this.findCustomerById(this.selectedOrder.customerID);
         this.findBreakfastsById(this.selectedOrder.id);
@@ -58,6 +55,7 @@ export class OrderInformationComponent implements OnInit, OnChanges {
   }
 
   openDialog() {
+    console.log(this.selectedOrder);
     const dialog = this.dialog.open(OrderConfirmDialogComponent, {
       data: {
         order: this.selectedOrder
@@ -66,6 +64,7 @@ export class OrderInformationComponent implements OnInit, OnChanges {
     dialog.afterClosed().subscribe(() => {
       this.selectedOrder = undefined;
       this.submitOrder.emit();
+      this.refresh();
     });
   }
 
@@ -79,22 +78,25 @@ export class OrderInformationComponent implements OnInit, OnChanges {
 
 
   findRestaurantById(id: number) {
-    console.log('find restaurant...');
     this.restaurantService.getRestaurantById(id).subscribe(restaurant => {
       this.selectedOrderRestaurant = restaurant;
     });
   }
 
   findCustomerById(id: number) {
-    console.log('find user...');
     this.userService.getUserById(id).subscribe(user => {
       this.selectedOrderCustomer = user;
     });
   }
+
   findBreakfastsById(id: number) {
-    console.log('find breakfasts...');
     this.orderService.getBreakfastsInOrderById(id).subscribe(breakfasts => {
       this.selectedOrderBreakfasts = breakfasts;
     });
   }
+
+  refresh() {
+    this.refresh$.next();
+  }
+
 }

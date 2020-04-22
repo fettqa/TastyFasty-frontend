@@ -22,11 +22,11 @@ export class OrderService {
 
 
   getBreakfastsInOrderById(id: number): Observable<Breakfast[]> {
-    return this.http.get<Breakfast[]>(`http://localhost:8080/api/order/${id}`);
+    return this.http.get<Breakfast[]>(`http://localhost:8080/api/orders/${id}`);
   }
 
   updateOrderByOrderId(id: number, orderToUpdate: Order) {
-    return this.http.put<Order>(`http://localhost:8080/api/order/${id}`, orderToUpdate);
+    return this.http.put<Order>(`http://localhost:8080/api/orders/${id}`, orderToUpdate);
 
   }
 

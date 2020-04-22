@@ -14,11 +14,14 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { CurrentOrdersPageComponent } from './pages/current-orders-page/current-orders-page.component';
-import {MyOrdersPageComponent} from "./pages/my-orders-page/my-orders-page.component";
+import {MatTreeModule} from '@angular/material/tree';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
-  declarations: [OrdersPageComponent, MyOrdersPageComponent, CurrentOrdersPageComponent],
+  declarations: [OrdersPageComponent, CurrentOrdersPageComponent],
+  exports: [
+  ],
   imports: [
     CommonModule,
     OrderPagesRoutingModule,
@@ -29,6 +32,9 @@ import {MyOrdersPageComponent} from "./pages/my-orders-page/my-orders-page.compo
     MatIconModule,
     FormsModule,
     MatListModule,
-    MatFormFieldModule]
+    MatFormFieldModule,
+    MatTreeModule,
+    MatExpansionModule
+  ]
 })
 export class OrderPagesModule { }

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {OrdersPageComponent} from './pages/orders-page/orders-page.component';
 import {OrderPageGuard} from './guards/order-page.guard';
-import {MyOrdersPageComponent} from "./pages/my-orders-page/my-orders-page.component";
+import {CurrentOrdersPageComponent} from './pages/current-orders-page/current-orders-page.component';
 
 
 const routes: Routes = [
@@ -17,12 +17,9 @@ const routes: Routes = [
         component: OrdersPageComponent,
       },
       {
-        path: 'myorders',
-        component: MyOrdersPageComponent,
-        /*resolve: {
-          order: OrderResolver
-        }*/
-      },
+        path: 'currentOrders',
+        component: CurrentOrdersPageComponent
+      }
     ]
   },
 ];
