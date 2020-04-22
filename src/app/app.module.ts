@@ -20,11 +20,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {RestaurantModule} from './features/restaurant/restaurant.module';
 import {CoreModule} from './core/core.module';
 import {PermissionsModule} from './features/permissions/permissions.module';
+import {OrderPagesModule} from './pages/order-pages/order-pages.module';
+import {OrdersModule} from './features/orders/orders.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

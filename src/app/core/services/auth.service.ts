@@ -8,7 +8,6 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private http: HttpClient) {
   }
 
@@ -33,9 +32,14 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    return this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
-      headers: headers
+
+    const currentUser = this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
+      headers
     });
+    currentUser.subscribe(user => {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    });
+    return currentUser;
   }
 
   logout(): Observable<CurrentUser> {

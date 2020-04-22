@@ -1,5 +1,5 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step>
+  <mat-step [completed]="form.valid">
     <form #form="ngForm" class="my-form-sign-in" (ngSubmit)="handleFirstFormSubmit(form.value)">
       <ng-template matStepLabel>Fill your username and password</ng-template>
 
@@ -24,7 +24,7 @@
     </form>
   </mat-step>
 
-  <mat-step>
+  <mat-step [completed]="form1.valid">
     <form #form1="ngForm" class="my-form-sign-in" (ngSubmit)="handleSecondFormSubmit(form1.value)">
 
       <ng-template matStepLabel>Fill out your personal info</ng-template>
@@ -51,7 +51,7 @@
     </form>
   </mat-step>
 
-  <mat-step>
+  <mat-step [completed]="form2.valid">
     <form #form2="ngForm" class="my-form-sign-in" (ngSubmit)="handleThirdFormSubmit(form2.value)">
       <mat-label>Address</mat-label>
       <ng-template matStepLabel>Fill out your address and phone number</ng-template>

@@ -1,0 +1,57 @@
+<div class="order-details">
+  <mat-list class="list-details" role="contentinfo">
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Restaurant:</mat-label>
+      {{restaurant.restaurantInfo.name}};
+      {{restaurant.restaurantInfo.address.city}},
+      {{restaurant.restaurantInfo.address.street}},
+      {{restaurant.restaurantInfo.address.building}},
+    </mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Customer:</mat-label>
+      {{customer.personalInfo.firstName}} {{customer.personalInfo.lastName}};
+      {{customer.personalInfo.address.city}},
+      {{customer.personalInfo.address.street}},
+      {{customer.personalInfo.address.building}}</mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Delivery Man:</mat-label>
+      {{deliveryMan.personalInfo.firstName}} {{deliveryMan.personalInfo.lastName}}
+    </mat-list-item>
+
+    <mat-list-item class="details-item" role="listitem">
+      <mat-label class="details-label">Price:</mat-label>
+      {{order.orderInfo.price}}
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<mat-label class="status-label"> Order's status</mat-label>
+
+<div class="order-status">
+  <mat-horizontal-stepper [selectedIndex]="currentStatus" class="my-stepper" #stepper [linear]="true">
+    <mat-step #step [completed]="false" class="status-step" *ngFor="let status of allStatuses; index as i">
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{status | status}}</ng-template>
+        <div *ngIf="i > currentStatus" class="done-text">Ready
+          <button mat-icon-button [disabled]="order.deliverymanID==-1"
+                  (click)="step.completed=true; stepper.next();
+                  handleFormSubmit(status);">
+            <mat-icon color="accent">check_circle_outline</mat-icon>
+          </button>
+        </div>
+        <div class="done-text" *ngIf="i <= currentStatus"> This step is already done. Next step
+          <button mat-icon-button [disabled]="order.deliverymanID==-1"
+                  (click)="step.completed=true; stepper.next()">
+            <mat-icon color="accent">arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div *ngIf="order.deliverymanID == -1"> Take the order to change it's status
+<button  mat-raised-button (click)="handleTakeTheOrderClick()"> Take it</button>
+</div>

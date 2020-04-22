@@ -4,9 +4,10 @@ import {Role} from '../../../../core/models/current-user.model';
 import {FormBuilder} from '@angular/forms';
 import {Address} from '../../../../shared/models/address-model';
 import {UserService} from '../../../../shared/services/user.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {CurrentUserService} from '../../../../core/services/current-user.service';
+import {AuthService} from '../../../../core/services/auth.service';
 
 interface CreateFirstForm {
   password?: string;
@@ -45,7 +46,10 @@ export class EditAccountPageComponent implements OnInit {
   Role = Role;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService,
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private userService: UserService,
               private currentUserService: CurrentUserService) {
   }
 
@@ -98,6 +102,7 @@ export class EditAccountPageComponent implements OnInit {
     this.userService.updateUser(this.user.id.toString(), userToPost).subscribe(
       user => {
         console.log(user);
+        this.router.navigateByUrl('/');
       }
     );
   }
