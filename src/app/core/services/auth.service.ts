@@ -33,7 +33,7 @@ export class AuthService {
     });
 
 
-    const currentUser = this.http.post<CurrentUser>('http://localhost:8080/auth/login', params.toString(), {
+    const currentUser = this.http.post<CurrentUser>('/api/auth/login', params.toString(), {
       headers
     });
     currentUser.subscribe(user => {
