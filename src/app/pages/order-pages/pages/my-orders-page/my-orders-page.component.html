@@ -1,0 +1,40 @@
+<mat-label class="status-label"> Order's status</mat-label>
+<div class="order-status" *ngIf="selectedOrder != undefined">
+  <mat-horizontal-stepper [selectedIndex]="currentStatus" class="my-stepper" #stepper [linear]="true">
+    <mat-step #step [completed]="false" class="status-step" *ngFor="let status of allStatuses; index as i">
+      <form class="my-form-sign-in">
+        <ng-template matStepLabel>{{status | status}}</ng-template>
+        <div *ngIf="i > currentStatus" class="done-text">Ready
+          <button mat-icon-button
+                  (click)="step.completed=true; stepper.next();
+                  handleFormSubmit(status);">
+            <mat-icon color="accent">check_circle_outline</mat-icon>
+          </button>
+        </div>
+        <div class="done-text" *ngIf="i <= currentStatus"> This step is already done. Next step
+          <button mat-icon-button
+                  (click)="step.completed=true; stepper.next()">
+            <mat-icon color="accent">arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+  <div> Take the order to change it's status
+    <button  mat-raised-button (click)="handleTakeTheOrderClick()"> Take it</button>
+  </div>
+</div>
+
+<app-order-information *ngIf="selectedOrder != undefined"
+                       [selectedOrder]="selectedOrder"
+                       (closeTabulation)="closeTab()">
+</app-order-information>
+
+
+<app-orders-table [orders]= "orders$ | async" (orderClick)="handleOrderClick($event)"></app-orders-table>
+
+
+
+
+

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Restaurant} from '../../../../features/restaurant/models/restaurant-model';
 import {User} from '../../../../shared/models/user-model';
@@ -9,9 +9,9 @@ import {BreakfastService} from '../../../../features/breakfast/services/breakfas
 import {UserService} from '../../../../shared/services/user.service';
 import {OrdersService} from '../../../../features/orders/service/orders.service';
 import {Order} from '../../../../shared/models/order-model';
-import {map} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import {CurrentUserService} from '../../../../core/services/current-user.service';
-import {ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {MatHorizontalStepper} from '@angular/material/stepper';
 
 
@@ -21,16 +21,14 @@ interface CreateForm {
 
 @Component({
   selector: 'app-order-details',
-  templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.scss']
+  templateUrl: './my-orders-page.component.html',
+  styleUrls: ['./my-orders-page.component.scss']
 })
-export class OrderDetailsComponent implements OnInit {
+export class MyOrdersPageComponent implements OnInit, OnChanges {
 
   order: Order;
-  restaurant: Restaurant;
-  customer: User;
-  deliveryMan: User;
   breakfasts: Breakfast[];
+  orders$!: Observable<Order[]>;
 
   Status = Status;
   isClicked = false;
@@ -43,42 +41,43 @@ export class OrderDetailsComponent implements OnInit {
     Status.WAITING_FOR_CUSTOMER,
     Status.READY];
   private refresh$ = new ReplaySubject<void>(1);
+  private refreshOrders$ = new ReplaySubject<void>(1);
+  selectedOrder?: Order;
 
 
   constructor(private route: ActivatedRoute,
-              private orderService: OrdersService,
+              private ordersService: OrdersService,
               private restaurantService: RestaurantService,
               private breakfastService: BreakfastService,
               private userService: UserService,
               private currentUserService: CurrentUserService) {
   }
 
-  ngOnInit(): void {
-    this.orderService.getOrderById(2).subscribe(
-      result => {
-        this.order = result;
-        this.restaurantService.getRestaurantById(this.order.restaurantID).subscribe(
-          restaurant => {
-            this.restaurant = restaurant;
-          }
-        );
-        this.userService.getUserById(this.order.customerID).subscribe(user => {
-          this.customer = user;
-        });
-
-        this.userService.getUserById(this.order.deliverymanID).subscribe(user => {
-          this.deliveryMan = user;
-        });
-        for (let i = 0; i < this.allStatuses.length; i++) {
-          if (this.order.status === this.allStatuses[i]) {
-            this.currentStatus = i;
-            console.log(this.currentStatus);
-            break;
-          }
-        }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('selectedOrder' in changes) {
+      if (changes.selectedOrder.currentValue === undefined) {
+        return;
+      } else {
+        this.ordersService.getOrderById(2).subscribe(
+          result => {
+            this.order = result;
+            for (let i = 0; i < this.allStatuses.length; i++) {
+              if (this.order.status === this.allStatuses[i]) {
+                this.currentStatus = i;
+                console.log(this.currentStatus);
+                break;
+              }
+            }
+          });
       }
-    );
+    }
+  }
 
+  ngOnInit(): void {
+    this.orders$ = this.refreshOrders$
+      .pipe(switchMap(() => this.ordersService.getOrders()), map(list => list));
+    this.refreshOrders$.next();
+  /*.filter(order => order.deliverymanID == this.deliveryMan.id))*/
     /*this.route.data.subscribe(data => {
       this.order = data.order as Order;
       this.updateFormFromOrder(this.order);
@@ -103,7 +102,7 @@ export class OrderDetailsComponent implements OnInit {
       if (user.authenticated) {
         this.userService.getUserById(user.info.id).subscribe(user1 => {
           console.log(user1);
-          this.order.deliverymanID = user1.id;
+          this.selectedOrder.deliverymanID = user1.id;
         });
       }
     })).subscribe();
@@ -113,4 +112,11 @@ export class OrderDetailsComponent implements OnInit {
     this.refresh$.next();
   }
 
+  handleOrderClick($event: Order) {
+    this.selectedOrder = $event;
+  }
+
+  closeTab() {
+    this.selectedOrder = undefined;
+  }
 }

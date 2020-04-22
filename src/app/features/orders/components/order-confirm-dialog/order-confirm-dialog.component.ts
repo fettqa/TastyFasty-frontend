@@ -31,7 +31,7 @@ export class OrderConfirmDialogComponent implements OnInit {
       if (user.authenticated) {
           this.user = user;
         }
-      }));
+      })).subscribe();
     console.log('confirm-dialog: current username is ' + this.user.info.username);
     console.log('confirm-dialog: init end');
   }

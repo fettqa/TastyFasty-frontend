@@ -10,6 +10,7 @@ import {Address} from "../../../../shared/models/address-model";
 import {AddressService} from "../../../address/service/address.service";
 import {Breakfast} from "../../../breakfast/models/breakfast-model";
 import {OrderService} from "../../../basket/services/order.service";
+import {Status} from "../../../basket/models/status";
 
 @Component({
   selector: 'app-order-information',
@@ -25,6 +26,10 @@ export class OrderInformationComponent implements OnInit, OnChanges {
 
   @Output()
   submitOrder = new EventEmitter();
+
+  @Output()
+  closeTabulation = new EventEmitter();
+  status = Status;
 
 
   constructor(private dialog: MatDialog,
@@ -69,6 +74,7 @@ export class OrderInformationComponent implements OnInit, OnChanges {
 
   closeTab() {
     this.selectedOrder = undefined;
+    this.closeTabulation.emit();
   }
 
 

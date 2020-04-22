@@ -14,11 +14,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { CurrentOrdersPageComponent } from './pages/current-orders-page/current-orders-page.component';
-import {OrderDetailsComponent} from '../../features/orders/components/order-details/order-details.component';
+import {MyOrdersPageComponent} from "./pages/my-orders-page/my-orders-page.component";
 
 
 @NgModule({
-  declarations: [OrdersPageComponent, OrderDetailsComponent, CurrentOrdersPageComponent],
+  declarations: [OrdersPageComponent, MyOrdersPageComponent, CurrentOrdersPageComponent],
   imports: [
     CommonModule,
     OrderPagesRoutingModule,
