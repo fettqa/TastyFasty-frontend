@@ -12,11 +12,11 @@ export class UserService {
   constructor(private http: HttpClient) {  }
 
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(`http://localhost:8080/api/users/${userId}`);
+    return this.http.get<User>(`/api/users/${userId}`);
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>('http://localhost:8080/api/users', user);
+    return this.http.post<User>('/api/users', user);
   }
 
   updateUser(id: string, userToUpdate: User): Observable<User> {
