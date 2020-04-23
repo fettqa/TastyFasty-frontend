@@ -18,6 +18,8 @@ import {ReplaySubject} from 'rxjs';
 })
 export class OrderInformationComponent implements OnInit, OnChanges {
 
+  displayedColumns = ['name', 'price', 'tag'];
+
   @Input() selectedOrder!: Order;
   selectedOrderRestaurant?: Restaurant;
   selectedOrderCustomer?: User;

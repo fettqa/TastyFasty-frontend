@@ -9,7 +9,8 @@ import {User} from '../models/user-model';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+  }
 
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(`/api/users/${userId}`);
@@ -20,5 +21,6 @@ export class UserService {
   }
 
   updateUser(id: string, userToUpdate: User): Observable<User> {
-    return this.http.put<User>(`http://localhost:8080/api/users/${id}`, userToUpdate);
-  }}
+    return this.http.put<User>(`/api/users/${id}`, userToUpdate);
+  }
+}

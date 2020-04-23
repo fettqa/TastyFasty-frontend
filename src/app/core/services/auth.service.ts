@@ -13,6 +13,7 @@ export class AuthService {
 
 
   loadProfile(): Observable<CurrentUser> {
+    console.log(localStorage.getItem('currentUser'));
     if (localStorage.getItem('currentUser') == null) {
       localStorage.setItem('currentUser', '{"authenticated":false}');
     }
@@ -32,14 +33,9 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-
-    const currentUser = this.http.post<CurrentUser>('/api/auth/login', params.toString(), {
+    return this.http.post<CurrentUser>('/api/auth/login', params.toString(), {
       headers
     });
-    currentUser.subscribe(user => {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    });
-    return currentUser;
   }
 
   logout(): Observable<CurrentUser> {

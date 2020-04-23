@@ -17,8 +17,10 @@ export class AccountPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserService.user$.pipe(map(currUser => {
+      console.log(currUser);
       if (currUser.authenticated) {
         this.userService.getUserById(currUser.info.id).subscribe(user => {
+          console.log(user);
           this.user = user;
         });
       }
