@@ -58,6 +58,7 @@ export class LoginPageComponent implements OnInit {
       username: value.username,
       password: value.password
     }).subscribe(profile => {
+        localStorage.setItem('currentUser', JSON.stringify(profile));
         this.currentUserService.user$.next(profile);
         this.dialog.closeAll();
       },

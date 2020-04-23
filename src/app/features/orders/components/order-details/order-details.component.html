@@ -32,18 +32,18 @@
 
 <div class="order-status">
   <mat-horizontal-stepper [selectedIndex]="currentStatus" class="my-stepper" #stepper [linear]="true">
-    <mat-step #step [completed]="false" class="status-step" *ngFor="let status of allStatuses; index as i">
+    <mat-step #step [completed]="i <= currentStatus" class="status-step" *ngFor="let status of allStatuses; index as i">
       <form class="my-form-sign-in">
         <ng-template matStepLabel>{{status | status}}</ng-template>
         <div *ngIf="i > currentStatus" class="done-text">Ready
-          <button mat-icon-button [disabled]="order.deliverymanID==-1"
+          <button mat-icon-button
                   (click)="step.completed=true; stepper.next();
                   handleFormSubmit(status);">
             <mat-icon color="accent">check_circle_outline</mat-icon>
           </button>
         </div>
         <div class="done-text" *ngIf="i <= currentStatus"> This step is already done. Next step
-          <button mat-icon-button [disabled]="order.deliverymanID==-1"
+          <button mat-icon-button
                   (click)="step.completed=true; stepper.next()">
             <mat-icon color="accent">arrow_forward</mat-icon>
           </button>
@@ -52,6 +52,6 @@
     </mat-step>
   </mat-horizontal-stepper>
 </div>
-<div *ngIf="order.deliverymanID == -1"> Take the order to change it's status
-<button  mat-raised-button (click)="handleTakeTheOrderClick()"> Take it</button>
+<div>
+  <button mat-raised-button *ngIf="order.status== Status.READY" (click)="handleCloseOrder()"> Close the order</button>
 </div>

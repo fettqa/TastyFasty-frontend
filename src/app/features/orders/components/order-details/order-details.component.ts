@@ -84,22 +84,18 @@ export class OrderDetailsComponent implements OnInit {
     this.currentStatus++;
     this.refresh();
     console.log(status);
+    this.orderService.updateOrder(this.order.id.toString(), this.order).subscribe();
   }
 
-  handleTakeTheOrderClick() {
-    this.order.status = Status.TO_RESTAURANT;
-    this.currentUserService.user$.pipe(map(user => {
-      if (user.authenticated) {
-        this.userService.getUserById(user.info.id).subscribe(user1 => {
-          console.log(user1);
-          this.order.deliverymanID = user1.id;
-        });
-      }
-    })).subscribe();
-  }
 
   refresh() {
     this.refresh$.next();
   }
 
+  handleCloseOrder() {
+    this.order.deliverymanID = -2;
+    console.log(this.order);
+    this.orderService.updateOrder(this.order.id.toString(), this.order).subscribe();
+    this.refresh();
+  }
 }

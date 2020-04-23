@@ -102,6 +102,7 @@ export class RegistrationPageComponent implements OnInit {
           username: this.username,
           password: this.password
         }).subscribe(profile => {
+          localStorage.setItem('currentUser', JSON.stringify(profile));
           this.currentUserService.user$.next(profile);
           this.router.navigateByUrl('/');
         });

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Order} from '../../../shared/models/order-model';
 import {ListValue} from '../../../shared/models/api-model';
 import {Breakfast} from '../../breakfast/models/breakfast-model';
+import {User} from '../../../shared/models/user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,8 @@ export class OrdersService {
   getOrdersByDeliveryManId(id: number): Observable<Order[]> {
     return this.http.get<Order[]>(`/api/orders/deliveryman?deliverymanId=` + id.toString());
   }
-
+  updateOrder(id: string, orderToUpdate: Order): Observable<Order> {
+    return this.http.put<Order>(`/api/orders/${id}`, orderToUpdate);
+  }
 
 }
