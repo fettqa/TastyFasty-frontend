@@ -18,6 +18,7 @@
     <app-order-info
       [itemsToOrder]="basketItems"
       (onRemoveItemToOrderEmitter)="onRemoveBasketItem($event)"
+      (onRemoveAllItemsToOrderEmitter)="onRemoveAllBasketItems()"
       [basketPrice]="basketPrice"
       [orderPrice]="orderPrice"
       [userId]="userId"

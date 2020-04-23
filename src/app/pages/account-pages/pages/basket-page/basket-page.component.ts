@@ -54,6 +54,12 @@ export class BasketPageComponent implements OnInit {
     this.recalcPrice();
   }
 
+  onRemoveAllBasketItems() {
+    this.basketFillingService.removeAllFromBasket(this.basketId);
+    this.basketItems = [];
+    this.recalcPrice();
+  }
+
   onChangeBasketItemState(basketItem: BasketItem) {
     this.basketFillingService.updateBasketItem(this.basketId, basketItem).subscribe(result => {
         this.recalcPrice();
@@ -71,6 +77,10 @@ export class BasketPageComponent implements OnInit {
           this.orderPrice += item.breakfast.price * item.numberOfItems;
         }
       }
+    }
+    else {
+      this.orderPrice = 0;
+      this.basketPrice = 0;
     }
   }
 

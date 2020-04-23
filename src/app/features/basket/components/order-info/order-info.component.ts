@@ -20,6 +20,7 @@ export class OrderInfoComponent implements OnInit {
   @Input() numOfPersons: number;
 
   @Output() onRemoveItemToOrderEmitter = new EventEmitter<BasketItem>();
+  @Output() onRemoveAllItemsToOrderEmitter = new EventEmitter();
 
   constructor(
     private orderService: OrderService,
@@ -82,14 +83,11 @@ export class OrderInfoComponent implements OnInit {
   }
 
   handleRemoveAllFromBasket() {
-    for (let item of this.itemsToOrder) {
-      this.handleRemoveItem(item);
-    }
+    this.onRemoveAllItemsToOrderEmitter.emit();
   }
 
   handleRemoveItem(item: BasketItem) {
     this.onRemoveItemToOrderEmitter.emit(item);
-    //this.itemsToOrder.splice(this.itemsToOrder.indexOf(item), 1);
   }
 
   handleNumOfPersons(num: number) {

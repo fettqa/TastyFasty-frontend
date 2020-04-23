@@ -1,0 +1,16 @@
+.filters-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+.filters-block div {
+  margin-left: 10px;
+}
+
+.search-form-content {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,1 +1,34 @@
-<span>Home page</span>
+<div class="filters-block">
+  <div class="search-form">
+    <form #form="ngForm" (ngSubmit)="handleSearchForm(form.value)">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <div class="search-form-content">
+          <input class="search-input" matInput name="search" ngModel>
+          <button class="search-button" mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="sort-form">
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Sort by</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let sort of sorts" [value]="sort.id" (click)="handleSortForm(sort)">
+            <mat-icon>{{sort.icon}}</mat-icon> {{sort.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+
+<mat-grid-list [cols]="cols" rowHeight="2:3" (window:resize)="onResize()">
+  <div class="breakfast-card" *ngFor="let breakfast of breakfasts">
+    <mat-grid-tile> <app-breakfast-card [breakfast]="breakfast"></app-breakfast-card></mat-grid-tile>
+  </div>
+</mat-grid-list>
